@@ -10,6 +10,7 @@ const sass = require('node-sass-middleware');
 const path = require('path');
 const androidstarters = require('androidstarters');
 const merge = require('lodash.merge');
+const rimraf = require('rimraf');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -84,9 +85,9 @@ app.post('/download', (req, res) => {
 				console.log(err);
 			} else {
 				console.log("Success");
+				rimraf.sync(file);
 			}
 		});
-
 	});
 });
 
