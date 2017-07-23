@@ -1,10 +1,10 @@
 {
-  "name": "prouardplease.com",
+  "name": "androidstarters.com",
   "version": "0.0.1",
-  "description": "Curated list of proguard rules of popular libraries",
+  "description": "Handcrafted starter projects, optimized for simplicity and ease of use.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ravidsrk/proguardplease.com"
+    "url": "https://github.com/androidstarters/androidstarters.com"
   },
   "author": "Ravindra Kumar",
   "license": "MIT",
