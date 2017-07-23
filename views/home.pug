@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  div.header
+    h1 Android Starters
+    p.lead Handcrafted Android Starters Projects
+  hr
+  .row
+    .col
+    form.form-inline
+    .form-group
+      label(for='app-name') App Name
+      input#app-name.form-control(type='text', placeholder='SampleApp' value='SampleApp')
+      label(for='package-name') Package Name
+      input#package-name.form-control(type='text', placeholder='io.sample.app' value='io.sample.app')
+      label(for='template-name') Architecture
+      input#template-name.form-control(type='text', placeholder='androidstarters-kotlin' value='androidstarters-kotlin')
+    button#search.btn.btn-default(type='submit') Download

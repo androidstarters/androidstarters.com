@@ -1,0 +1,143 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'jacoco'
+//apply plugin: 'io.fabric'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.0'
+
+    dexOptions {
+        maxProcessCount 4
+        preDexLibraries false
+        javaMaxHeapSize "8g"
+    }
+
+    defaultConfig {
+        defaultPublishConfig 'debug'
+
+        applicationId "<%= appPackage %>"
+        minSdkVersion 18
+        targetSdkVersion 26
+        testInstrumentationRunner "${applicationId}.runner.RxAndroidJUnitRunner"
+        versionCode 1000
+        // Major -> Millions, Minor -> Thousands, Bugfix -> Hundreds. E.g 1.3.72 == 1,003,072
+        versionName '0.1.0'
+
+        buildConfigField("String", "POKEAPI_API_URL",
+                "\"${PokeapiApiUrl}\"")
+
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        def commonTestDir = 'src/commonTest/java'
+        test {
+            java.srcDir commonTestDir
+        }
+        androidTest {
+            java.srcDir commonTestDir
+        }
+    }
+
+    lintOptions {
+        textOutput "stdout"
+        textReport true
+        checkAllWarnings true
+        warningsAsErrors true
+        showAll true
+        explainIssues true
+        abortOnError false
+        lintConfig file("$projectDir/lint.xml")
+    }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/license/LICENSE.base64.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+        unitTests {
+            returnDefaultValues = true
+            all {
+                jacoco {
+                    includeNoLocationClasses = true
+                }
+            }
+        }
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        force 'com.squareup.okio:okio:1.11.0'
+        force "com.squareup.okhttp3:okhttp:3.5.0"
+        force 'org.jetbrains.kotlin:kotlin-stdlib:1.1.2-3'
+    }
+}
+
+apply from: 'dependencies.gradle'
+
+dependencies {
+
+    implementation supportLibs
+    implementation networkLibs
+    implementation rxJavaLibs
+    implementation googlePlayLibs
+    implementation 'com.android.support:multidex:1.0.1'
+
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation('com.github.bumptech.glide:okhttp3-integration:1.4.0') {
+        exclude group: 'glide-parent'
+    }
+
+    //RxPermission for easy runtime permission management
+    implementation 'com.tbruyelle.rxpermissions:rxpermissions:0.9.1@aar'
+
+    implementation "com.jakewharton:butterknife:$versions.butterKnife"
+    implementation "com.jakewharton.timber:timber:4.5.1"
+    implementation "com.facebook.stetho:stetho-okhttp3:1.4.2"
+
+    implementation "com.google.dagger:dagger:$versions.dagger"
+    compileOnly 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger2
+
+    debugImplementation leakCannary
+    releaseImplementation leakCannary
+    testImplementation leakCannary
+
+    // APT dependencies
+    kapt "com.jakewharton:butterknife-compiler:$versions.butterKnife"
+    kapt daggerCompiler
+    kaptTest daggerCompiler
+    kaptAndroidTest daggerCompiler
+
+    testImplementation unitTestLibs
+    androidTestImplementation androidTestsLibs
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    testImplementation "org.jetbrains.kotlin:kotlin-test:1.1.2-2"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:1.1.2-2"
+}
+
+// Log out test results to console
+tasks.matching { it instanceof Test }.all {
+    testLogging.events = ["failed", "passed", "skipped"]
+}
