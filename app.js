@@ -5,13 +5,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const chalk = require('chalk');
-const errorHandler = require('errorhandler');
 const dotenv = require('dotenv');
 const sass = require('node-sass-middleware');
 const path = require('path');
 const androidstarters = require('androidstarters');
 const merge = require('lodash.merge');
-const zip = require('express-easy-zip');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -47,7 +45,6 @@ app.use(bodyParser.urlencoded({
 app.use(express.static(path.join(__dirname, 'public'), {
 	maxAge: 31557600000
 }));
-app.use(zip());
 
 /**
  * Primary app routes.
@@ -79,18 +76,19 @@ app.post('/download', (req, res) => {
 	config.appPath = path.join(__dirname, config.appName + '/');
 
 	androidstarters(config, function(filePath) {
-		var downloadPath = process.env.PWD + "/" + filePath;
 
-		console.log(downloadPath);
+		var file = path.join(__dirname, filePath);
+		res.download(file, function(err) {
+			if (err) {
+				console.log("Error");
+				console.log(err);
+			} else {
+				console.log("Success");
+			}
+		});
 
-		res.attachment(downloadPath);
 	});
 });
-
-/**
- * Error Handler.
- */
-app.use(errorHandler());
 
 /**
  * Start Express server.
