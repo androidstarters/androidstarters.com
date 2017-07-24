@@ -109,6 +109,11 @@
       "props": false
     },
     {
+      "name": "config",
+      "prefixDot": false,
+      "props": false
+    },
+    {
       "name": "app/src/main/res",
       "prefixDot": false,
       "props": false
