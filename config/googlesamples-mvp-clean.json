@@ -14,7 +14,7 @@
     {
       "appName": true,
       "name": "/app/src/androidTest/java/",
-      "packageDir": false
+      "packageDir": true
     },
     {
       "appName": true,
@@ -34,12 +34,12 @@
     {
       "appName": true,
       "name": "/app/src/prod/java/",
-      "packageDir": false
+      "packageDir": true
     },
     {
       "appName": true,
       "name": "/app/src/test/java/",
-      "packageDir": false
+      "packageDir": true
     }
   ],
   "files": [
