@@ -33,17 +33,17 @@
     },
     {
       "appName": true,
-      "name": "/app/src/debug",
+      "name": "/app/src/debug/",
       "packageDir": false
     },
     {
       "appName": true,
-      "name": "/app/src/release",
+      "name": "/app/src/release/",
       "packageDir": false
     },
     {
       "appName": true,
-      "name": "/app/src/test/resources",
+      "name": "/app/src/test/resources/",
       "packageDir": false
     },
     {

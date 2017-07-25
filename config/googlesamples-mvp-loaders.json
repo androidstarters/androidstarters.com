@@ -23,22 +23,22 @@
     },
     {
       "appName": true,
-      "name": "/app/src/main/java",
+      "name": "/app/src/main/java/",
       "packageDir": true
     },
     {
       "appName": true,
-      "name": "/app/src/mock/java",
+      "name": "/app/src/mock/java/",
       "packageDir": true
     },
     {
       "appName": true,
-      "name": "/app/src/prod/java",
+      "name": "/app/src/prod/java/",
       "packageDir": false
     },
     {
       "appName": true,
-      "name": "/app/src/test/java",
+      "name": "/app/src/test/java/",
       "packageDir": false
     }
   ],
