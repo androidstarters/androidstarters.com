@@ -1,0 +1,97 @@
+@import "~sass-bem-constructor/dist/bem-constructor";
+
+@include object('footer') {
+  list-style: none;
+  padding-left:0;
+  text-align: center;
+
+  @include modifier('fullwhite'){
+    background-color: transparent;
+  }
+  
+  @include modifier('white') {
+    background-color: #f1f2f5;  
+    margin-top: 1.5rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    @include clearfix;
+    
+    @include modifies-element('link') {
+      color: #000;
+    }
+    @include modifies-element('light_text') {
+      color: #000;
+    }
+  }
+
+  @include modifier('heading') {
+    margin-bottom: 10px; 
+    @include modifies-element('link') {
+      color: #DDE6E7;
+      text-transform: uppercase;
+      opacity: 0.34;
+      letter-spacing: 1px;
+      font-size: ms(-1);
+    }
+  }
+
+  @include element('light_text') {
+    font-size: 15px;
+    color: darken(#fff, 1%);
+  }
+
+  @include element('link') {
+    color: #C8CDCE;
+    font-size: ms(0);
+    text-decoration: none;
+  }
+}
+
+footer {
+  @include clearfix;
+  background-color: $fill-dark-grey;
+  padding-top:3rem;
+  padding-bottom:3rem;
+  z-index: 1000;  
+}
+
+.light_link {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+
+.light_2 {
+  font-size: 15px;
+  color: darken(#fff, 1%);
+}
+
+.copyright {
+  font-size: 14px;
+  margin-top: 2rem;
+  color: rgba(255, 255, 255, 0.37);
+}
+
+.social__icons { 
+  padding: 0;
+}
+
+.social__icon {
+  display: inline-block;
+  margin-right: 18px;
+}
+
+.logoDim {
+  width: 25%;
+  margin-top: 2rem;
+  opacity: 0.3;
+}
+
+.footerRight {
+  text-align: left;
+}
+
+.footerLeft {
+  text-align: left;  
+}

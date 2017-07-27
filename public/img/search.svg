@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="D3" transform="translate(-173.000000, -1110.000000)">
+            <g id="Group-5" transform="translate(173.000000, 1110.000000)">
+                <g id="icon">
+                    <circle id="Oval" fill="#490DAF" cx="18" cy="18" r="18"></circle>
+                    <polyline id="Path-2" stroke="#FFFFFF" stroke-width="2" points="10.0327869 18.4736353 15.0578517 23.4987001 26.1631092 12.3934426"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

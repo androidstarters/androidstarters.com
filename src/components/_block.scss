@@ -1,0 +1,117 @@
+
+@include object('list') {
+  list-style: none;
+  margin-left: 0;
+  padding-left:16px;
+  margin-top: 0px;
+  @include element('heading'){
+    padding-left:16px;
+    font-size: ms(-1);
+    color: #999;
+    margin-top: 8px;
+    display: block;
+    margin-bottom: 0px;
+  }
+  
+  @include element('item'){
+    display: inline-block; 
+    margin-right: 8px;  
+  }
+
+  @include element('link'){
+    text-decoration: none;
+    font-size: ms(-1);
+    font-weight: 100;
+    &:hover{
+      border-bottom: solid 1px darken($fill-primary, 8%);
+      color: darken($fill-primary, 8%);
+    }
+  }
+
+  @include element('result'){
+    border: 0;
+    padding-left: 8px;
+    padding-left: 16px;
+    padding-top: 16px;
+    background-color: #f3f5f7;
+    width: 100%;
+    font-size: ms(-1);
+    padding-right: 16px;
+    padding-bottom: 16px;
+    font-family: monospace;
+    color: #444;
+  }
+}
+
+@include object('block') {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  
+  @include element('no'){
+    opacity: 0.2;
+    font-family: $font-base;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #656565;
+    left: -2.75rem;
+    position: absolute;
+    margin-top: -0.6rem;
+    font-weight: 100;
+  }
+  
+  @include element('input'){
+    display: inline-block;
+    border: none;
+    font-size: ms(1);
+    border-bottom: solid 1px #b2b3c7;
+    margin-right: 1rem;
+    padding: ms(1)/2;
+    font-family: $font-base;
+    padding-left:0;
+    min-width: 40%;
+  }
+  
+  @include element('heading'){
+    display: inline-block;
+    margin-top: 0;
+    position:relative;
+    padding-top: 1.5rem;
+    font-size: ms(1);    
+    color: mix(#000, $base, 90%);
+    font-weight: 400;
+    font-family: $font-base;
+  }
+
+  @include element('group'){
+    margin-bottom: 0.25rem;
+  }
+
+  @include element('label'){
+    font-size: ms(0);
+    font-weight: 100;
+    color: #7985a0;
+    padding-bottom: 0.5rem;
+    min-width: 33%;
+    display: inline-block;
+
+  }
+
+  @include element('value'){
+    font-size: ms(0);
+    font-weight: 400;
+    color: darken($sec, 50%);
+    display: inline-block;
+    // text-transform: lowercase;
+  }
+}
+
+// hacks
+.o-block:hover .o-block__no {
+  color: darken($sec, 10%);
+  opacity: 1;
+}
+
+.o-block:hover .o-block__heading {
+  color: $sec;
+  opacity: 1;
+}

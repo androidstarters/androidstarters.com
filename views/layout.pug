@@ -12,13 +12,11 @@ html
 
   body
 
-    .container.centered
+    include partials/header.html    
+    .container#app
       block content
-
-    include partials/footer
-
-    script(src='/js/lib/jquery-3.1.1.min.js')
-    script(src='/js/lib/bootstrap.min.js')
+    include partials/footer.html    
+    
     script(src='/js/main.js')
 
     // Google Analytics: change UA-XXXXX-X to be your site's ID

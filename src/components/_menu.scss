@@ -1,0 +1,95 @@
+@import "~sass-bem-constructor/dist/bem-constructor";
+
+.c-header{
+    background: #FFFFFF;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.16);
+}
+
+.logo-company {
+    margin-top: -21px;
+}
+
+
+.brand__logo{
+    display: inline-block;
+    margin-right: 1rem;
+    vertical-align: top;
+    position: relative;
+    margin-top: 0.5rem;
+}
+
+@include object('menu') {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;   
+    padding-top: 1rem; 
+
+    @include element('left'){
+        float: left;
+    }
+
+    @include element('logo'){
+        width: 32px;
+        margin-right: 1rem;
+    }
+    
+    @include element('list') {
+        position: relative;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        // padding-top: 1.5rem;
+    }
+
+    @include element('brand'){
+        color: #fff;
+        font-weight: 100;
+        font-family: $font-base;
+        // padding-top: 2rem;
+        vertical-align: top;
+        display: inline-block;
+    }
+    
+    @include element('item') {
+        position: relative;
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        float: right;
+        margin-top: 1rem;
+    }
+
+    @include element('link'){
+        display: block;
+        text-decoration: none;
+        white-space: nowrap;
+        color: #444;
+        padding: 1.2rem;
+        padding-top:43px;
+        padding-bottom:43px;
+        max-height: 135px;
+    }
+
+    @include element('heading'){
+        display: block;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+    @include modifier('horizontal') {
+        width: 100%;
+        white-space: nowrap;
+        text-align: right;
+        
+        @include modifies-element('list') {
+            display: inline-block;
+        }
+
+        @include modifies-element('item'){
+            display: inline-block;
+            *display: inline;
+            zoom: 1;
+            vertical-align: middle;
+        }
+    }
+}

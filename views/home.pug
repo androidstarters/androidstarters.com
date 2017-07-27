@@ -1,28 +1,5 @@
 extends layout
 
 block content
-  div.header
-    h1 Android Starters
-    p.lead Handcrafted Android Starters Projects
-  hr
-  .row
-    .col
-    form(method='POST', action="/download")
-      .form-group
-        label(for='appName') App Name
-        input.form-control(type='text', placeholder='SampleApp' value='SampleApp' name='appName')
-        label(for='packageName') Package Name
-        input.form-control(type='text', placeholder='io.sample.app' value='io.sample.app' name='packageName')
-        label(for='templateName') Architecture
-        select.form-control(name='templateName')
-          option(value='androidstarters-java') AndroidStarters Java
-          option(value='androidstarters-kotlin') AndroidStarters Kotlin
-          option(value='googlesamples-mvp') Google Samples MVP
-          option(value='googlesamples-databinding') Google Samples Databinding
-          option(value='googlesamples-mvp-clean') Google Samples MVP Clean
-          option(value='googlesamples-mvp-dagger') Google Samples MVP Dagger
-          option(value='googlesamples-mvp-rxjava') Google Samples MVP RxJava
-          option(value='googlesamples-mvvm-databinding') Google Samples MVVM Databinding
-          option(value='googlesamples-mvp-loaders') Google Samples MVP Loaders
-          option(value='googlesamples-mvp-contentproviders') Google Samples MVP Contentproviders
-      button#search.btn.btn-default(type='submit') Download
+  include partials/block.html
+    

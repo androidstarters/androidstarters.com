@@ -1,0 +1,64 @@
+@import "~sass-bem-constructor/dist/bem-constructor";
+
+@include object('card'){
+  
+  @include clearfix;  
+  
+  @include modifier('search') {
+    margin-top: -61px;
+    background-color: #fff !important;
+    z-index: 9000;
+    position: relative;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.16);
+  }
+  
+  @include element('item'){
+    background-color: #ffffff;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-bottom: 2rem;
+    &:hover,
+    &.active{
+      .o-sel__not { background-color: lighten($fill-base, 40%); }      
+      background-color: mix(#fff, yellow, 90%);
+    }
+  }
+  
+  @include element('heading'){
+    font-family: $font-base;
+    // font-size: ms(0.5);
+    font-weight: 500;
+    color: mix(#000, $base, 90%);
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+  }
+
+  @include element('group'){
+    padding-top: 0.5rem;
+    padding-right: 2rem;
+  }
+  
+  @include element('body'){    
+    font-family: $font-base;
+    font-size: ms(0);
+    font-weight: 300;
+    color: #6b8ca5;
+    margin-top: 0.25rem;
+    line-height: 1.45rem;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  
+
+  // Selected
+  @include modifier('selected') {
+    background-color: mix($fill-base, #fff, 20%) !important;
+    .o-sel__not {
+      background-image: url(/img/search.svg);
+      background-position: -5px -6px;
+      background-color: $fill-base;
+    }
+  }
+}
