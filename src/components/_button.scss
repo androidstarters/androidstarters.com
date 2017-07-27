@@ -1,0 +1,86 @@
+@import "~sass-bem-constructor/dist/bem-constructor";
+
+@include object('icon'){
+  @include element('inline'){
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+  @include element('link'){
+    display: inline-block;
+    vertical-align: top;
+    padding-top:4px;
+  }
+  @include element('group'){
+    margin-top: 1rem;
+  }
+  @include element('license'){
+    vertical-align: top; 
+    float: right;
+  }
+}
+
+@include object('btn') {
+  @include element('cta'){
+    max-height: 60px;
+    display: inline-block;
+    background-color: $fill-asc-2;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+    text-decoration: none;
+    text-align: center;
+    border:0;
+    // font-size: ms(1.5);
+    border-radius:1px;
+    color: #fff;
+    &:hover{
+      background-color: $bright-green;
+      color: darken($bright-green, 50%);
+    }
+  }
+
+  @include element('base'){
+    max-height: 60px;
+    display: block;
+    background-color: $sec;
+    padding: 1rem 1.5rem;
+    margin-top: 0.5rem;
+    border-radius:1px;
+    text-decoration: none;
+    text-align: center;
+    color: $off;
+    width: 80%;
+    border: 0;
+    font-size: ms(0);
+    &:visited{
+      color: $off;
+    }
+    &:hover{
+      background-color: $bright-green;
+      color: darken($bright-green, 30%);
+    }
+  }
+}
+
+a.o-btn__base.o-btn--building {
+  background-color: lighten($fill-primary, 20%);
+  &:before{
+    content: '';
+  }
+}
+
+// hacks
+.o-btn__base .spinner {
+  display: none;
+}
+
+.o-btn__base.o-btn--building{
+  &:hover{
+    color: darken(#fff, 4%);
+  }
+  .spinner{
+    display: inline-block;
+    float: right;
+    width: 90%;
+    text-align: center;
+    padding-top: 0.5rem;
+  }
+}

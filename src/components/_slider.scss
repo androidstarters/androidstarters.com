@@ -1,0 +1,46 @@
+@import "~sass-bem-constructor/dist/bem-constructor";
+
+$base: #00e6ff;
+$tert : #fc0ca6;
+$sec:#490daf;
+$off: #fff;
+
+@include object('slider') {
+  list-style: none;
+  padding-left:0;
+  min-height: 580px;
+  max-height: 450px;
+  background-color: #490daf;
+  position: relative;
+  @include clearfix;
+  
+  @include modifier('mini'){
+    min-height: 380px;
+    background-color: #490daf;
+    position: relative;
+  }
+  
+  @include element('box'){
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 5rem;
+    width: 50%;
+  }
+  
+  @include element('head'){
+    font-size: ms(7);
+    font-weight: 600;
+    line-height: 1.26;
+    font-family: $font-base;    
+    color: $off;
+  }
+
+  @include element('sub'){
+    font-family: $font-base;
+    font-size: ms(4);
+    font-weight: 300;
+    line-height: 1.24;
+    color: mix($fill-white, $fill-primary, 60%);
+    width: 70%;
+  }
+}

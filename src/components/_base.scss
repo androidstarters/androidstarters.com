@@ -1,0 +1,38 @@
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: '';
+    display: table;
+  }
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  background-image: url(/img/bg.png);
+  background-repeat: no-repeat;
+  background-position: right bottom; /*Positioning*/
+  background-repeat: no-repeat; /*Prevent showing multiple background images*/
+  font-family: $font-base; 
+  margin:0;
+}
+
+.container{
+  max-width: 70em;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  @include clearfix;
+}
+
+.col_left{
+  width: 66.26506%;
+  float: left;
+  margin-right: 1.20482%;
+}
+
+.col_right{
+  width: 32.53012%;
+  float: right;
+  margin-right: 0;
+}
