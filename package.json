@@ -9,6 +9,7 @@
   "author": "Ravindra Kumar",
   "license": "MIT",
   "scripts": {
+    "build": "webpack -p",
     "start": "node app.js",
     "test": "mocha --reporter spec",
     "postinstall": "npm rebuild node-sass",

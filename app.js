@@ -77,11 +77,8 @@ app.post('/download', (req, res) => {
 	config.appPath = path.join(__dirname, config.appName + '/');
 
 	androidstarters(config, function(filePath) {
-
 		var file = path.join(__dirname, filePath);
-		res.setHeader('Content-disposition', 'attachment; filename=' + file);
 		res.download(file, function(err) {
-			console.log(file);
 			if (err) {
 				console.log("Error");
 				console.log(err);
