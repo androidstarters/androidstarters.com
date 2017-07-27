@@ -22,7 +22,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @RunWith(AndroidJUnit4.class)
@@ -30,19 +30,20 @@ public class DetailActivityTest {
 
     public final TestComponentRule component =
             new TestComponentRule(InstrumentationRegistry.getTargetContext());
-    public final ActivityTestRule<DetailActivity> main =
+
+    public final ActivityTestRule<DetailActivity> detailActivityTestRule =
             new ActivityTestRule<>(DetailActivity.class, false, false);
 
     // TestComponentRule needs to go first to make sure the Dagger ApplicationTestComponent is set
     // in the Application before any Activity is launched.
     @Rule
-    public TestRule chain = RuleChain.outerRule(component).around(main);
+    public TestRule chain = RuleChain.outerRule(component).around(detailActivityTestRule);
 
     @Test
     public void checkPokemonDisplays() {
         Pokemon pokemon = TestDataFactory.makePokemon("id");
         stubDataManagerGetPokemon(Single.just(pokemon));
-        main.launchActivity(
+        detailActivityTestRule.launchActivity(
                 DetailActivity.getStartIntent(InstrumentationRegistry.getContext(), pokemon.name));
 
         for (Statistic stat : pokemon.stats) {
@@ -54,7 +55,7 @@ public class DetailActivityTest {
     public void checkErrorViewDisplays() {
         stubDataManagerGetPokemon(Single.error(new RuntimeException()));
         Pokemon pokemon = TestDataFactory.makePokemon("id");
-        main.launchActivity(
+        detailActivityTestRule.launchActivity(
                 DetailActivity.getStartIntent(InstrumentationRegistry.getContext(), pokemon.name));
         ErrorTestUtil.checkErrorViewsDisplay();
     }
