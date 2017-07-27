@@ -11,9 +11,8 @@ const path = require('path');
 const androidstarters = require('androidstarters');
 const merge = require('lodash.merge');
 const rimraf = require('rimraf');
-const Mixpanel = require('mixpanel');
-const mixpanel = Mixpanel.init(process.env.MIXPANEL_API_KEY);
-
+const Rollbar = require("rollbar");
+const rollbar = new Rollbar(process.env.ROLLBAR_API_KEY);
 
 
 /**
@@ -71,7 +70,7 @@ app.post('/download', (req, res) => {
 		}
 	};
 
-	mixpanel.track("Download", config);
+	rollbar.log(JSON.stringify(config));
 
 	const templateConfig = require('./config/' + config.templateName + '.json');
 
