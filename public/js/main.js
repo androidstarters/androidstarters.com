@@ -104,6 +104,7 @@ var app = new _vue2.default({
     message: 'Hello Vue!',
     items: repos.architectures,
     appName: 'Project Name',
+    templateName: '',
     packageName: 'com.company.project',
     selected: {},
     building: false,
