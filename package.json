@@ -13,7 +13,8 @@
     "start": "node app.js",
     "test": "mocha --reporter spec",
     "postinstall": "npm rebuild node-sass",
-    "eslint": "eslint **/*.js"
+    "eslint": "eslint **/*.js",
+    "heroku-postbuild": "webpack -p"
   },
   "dependencies": {
     "androidstarters": "^0.1.0",
