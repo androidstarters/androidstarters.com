@@ -41,6 +41,7 @@
     "nodemailer": "^4.0.1",
     "pug": "^2.0.0-beta6",
     "rimraf": "^2.6.1",
+    "rollbar": "^2.1.0",
     "sass-bem-constructor": "1.1.0",
     "sass-loader": "6.0.6",
     "sticky-js": "1.2.0",
