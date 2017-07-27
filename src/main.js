@@ -18,8 +18,8 @@ var app = new Vue({
     data: {
       message: 'Hello Vue!',
       items: repos.architectures,
-      project: 'Project Name',
-      package: 'com.company.project',
+      appName: 'Project Name',
+      packageName: 'com.company.project',
       selected: {},
       building: false,
       build_text: 'Download'
@@ -31,25 +31,7 @@ var app = new Vue({
         this.selected = e;
         this.building = false;
         this.build_text = 'Build';
-      },
-      
-      fetchPost: function(config) {
-        var config = {
-          appName: this.project,
-          packageName: this.package,
-          templateName: config.templateName,
-          props: {
-            appPackage: this.package
-          }
-        };
-        
-        this.$http.post('/download', config, {responseType: 'arraybuffer' })
-          .then(getFile)
-          .then((response) => {            
-            response.click(); 
-          }, response => {
-            console.log('Error downloading...');
-          });
+        this.templateName = e.templateName;
       },
     
       buildNow: function(e){
