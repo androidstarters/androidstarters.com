@@ -17,6 +17,7 @@ var app = new Vue({
       message: 'Hello Vue!',
       items: repos.architectures,
       appName: 'Project Name',
+      templateName: '',
       packageName: 'com.company.project',
       selected: {},
       building: false,
