@@ -2,13 +2,13 @@ export var architectures = [{
     name: 'Android Starters Java',
     templateName: 'androidstarters-java',
     license: 'MIT',
-    desc: 'Android starter based on MVP/Dagger2/RxJava2/Robolectric/Espresso/Mockito. It provides a generator to fast create a Android template projec',
+    desc: 'Android starter based on MVP/Dagger2/RxJava2/Robolectric/Espresso/Mockito.',
     gh: 'https://github.com/androidstarters/android-starter'
 }, {
     name: 'Android Starters Kotlin',
     templateName: 'androidstarters-kotlin',
     license: 'MIT',
-    desc: 'Kotlin Android starter based MVP/Dagger2/RxJava2/Robolectric/Espresso/Mockito. It provides a generator to fast create a Kotlin Android projec',
+    desc: 'Kotlin Android starter based MVP/Dagger2/RxJava2/Robolectric/Espresso/Mockito.',
     gh: 'https://github.com/androidstarters/kotlin-android-starter'
 }, {
     name: 'Google Samples MVP',
