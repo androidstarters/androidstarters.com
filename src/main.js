@@ -3,16 +3,14 @@ import './main.scss';
 
 // js
 import Vue from 'vue';
-import VueResource from 'vue-resource';
 import Sticky from 'sticky-js';
 import {getFile} from './utils.js';
 import * as repos from './repos.js';
 
-// connect
-Vue.use(VueResource);
-
+// sticky download part
 var sticky = new Sticky('.box-therapy');
 
+// vue init
 var app = new Vue({
     el: '#app',
     data: {
@@ -26,8 +24,6 @@ var app = new Vue({
     },
     methods: {
       selectPackage: function(e){
-        console.log('selected');
-        console.log(e);
         this.selected = e;
         this.building = false;
         this.build_text = 'Build';
@@ -35,7 +31,7 @@ var app = new Vue({
       },
     
       buildNow: function(e){
-        console.log('builder at work');
+        console.log('Buidling ..');
         this.fetchPost(this.selected);
         this.building = true;
         this.build_text = '';
