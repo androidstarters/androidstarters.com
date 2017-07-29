@@ -36,6 +36,11 @@ var app = new Vue({
         this.fetchPost(this.selected);
         this.building = true;
         this.build_text = '';
+      },
+
+      gaEvent: function(e){
+        ga('send', 'event', 'Build', 'Download', this.templateName);
+
       }
     },
   });
