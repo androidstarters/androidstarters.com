@@ -65,7 +65,7 @@
                   <div class="o-block__value">{{ templateName || 'Not Selected' }}</div>
                 </div>
 
-              <button v-bind:class="{ 'o-btn--building': building }" class="o-btn__base">
+              <button v-bind:class="{ 'o-btn--building': building }" v-on:click="gaEvent" class="o-btn__base">
                 <span class="spinner">
                   <span class="bounce1"></span>
                   <span class="bounce2"></span>
