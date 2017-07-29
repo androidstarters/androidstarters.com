@@ -67,6 +67,8 @@ app.post('/download', (req, res) => {
 		}
 	};
 
+	if ( config.templateName.length === 0 ) config.templatename = 'androidstarters-java';
+
 	const templateConfig = require('./config/' + config.templateName + '.json');
 
 	config.packageDir = config.packageName.replace(/\./g, '/');
