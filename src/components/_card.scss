@@ -1,9 +1,7 @@
 @import "~sass-bem-constructor/dist/bem-constructor";
 
-@include object('card'){
-  
+@include object('card'){  
   @include clearfix;  
-  
   @include modifier('search') {
     margin-top: -61px;
     background-color: #fff !important;
@@ -28,11 +26,10 @@
   
   @include element('heading'){
     font-family: $font-base;
-    // font-size: ms(0.5);
     font-weight: 500;
     color: mix(#000, $base, 90%);
     margin-top: 0;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.75rem;
   }
 
   @include element('group'){

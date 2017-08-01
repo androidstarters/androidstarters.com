@@ -1,13 +1,6 @@
-
-/* Icons */
-
-@include object('icon') {
-  display: inline-block;
-  float: right;
-  margin-top: 1.5rem;
-  @include element('item'){
-    display: inline-block;
-  }
+*[placeholder] {
+  color: mix($fill-dark, $fill-primary, 50%);
+  opacity: 0.85;
 }
 
 .u-input{

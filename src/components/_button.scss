@@ -1,6 +1,11 @@
 @import "~sass-bem-constructor/dist/bem-constructor";
 
 @include object('icon'){
+  @include modifier('social'){
+    display: inline-block;
+    float: right;
+    margin-top: 1.5rem;
+  }
   @include element('inline'){
     display: inline-block;
     margin-right: 0.5rem;
@@ -8,7 +13,6 @@
   @include element('link'){
     display: inline-block;
     vertical-align: top;
-    padding-top:4px;
   }
   @include element('group'){
     margin-top: 1rem;
@@ -16,6 +20,8 @@
   @include element('license'){
     vertical-align: top; 
     float: right;
+    font-size: 1rem;
+    color: #b0b6c3;
   }
 }
 
