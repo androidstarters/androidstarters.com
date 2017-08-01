@@ -1,3 +1,15 @@
+
+/* Icons */
+
+@include object('icon') {
+  display: inline-block;
+  float: right;
+  margin-top: 1.5rem;
+  @include element('item'){
+    display: inline-block;
+  }
+}
+
 .u-input{
   padding-left: 16px;
   padding-top: 16px;
@@ -97,7 +109,6 @@
     border-bottom: solid 1px $fill-bright;
   }
 }
-
 
 .c-content{
   min-height: 400px;
