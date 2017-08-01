@@ -5,11 +5,23 @@ export var architectures = [{
     desc: 'Android starter based on MVP/Dagger2/RxJava2/Robolectric/Espresso/Mockito.',
     gh: 'https://github.com/androidstarters/android-starter'
 }, {
+    name: 'Mindorks MVP',
+    templateName: 'mindorks-mvp',
+    license: 'Apache 2',
+    desc: 'MVP architecture using Dagger2, GreenDao, RxJava2, FastAndroidNetworking and PlaceholderView.',
+    gh: 'https://github.com/MindorksOpenSource/android-mvp-architecture'
+}, {
     name: 'Android Starters Kotlin',
     templateName: 'androidstarters-kotlin',
     license: 'MIT',
     desc: 'Kotlin Android starter based MVP/Dagger2/RxJava2/Robolectric/Espresso/Mockito.',
     gh: 'https://github.com/androidstarters/kotlin-android-starter'
+}, {
+    name: 'Mindorks MVP Enhanced',
+    templateName: 'mindorks-mvp-interactor',
+    license: 'Apache 2',
+    desc: 'Extension of the android-mvp-architecture for very large projects.',
+    gh: 'https://github.com/MindorksOpenSource/android-mvp-interactor-architecture'
 }, {
     name: 'Google Samples MVP',
     templateName: 'googlesamples-mvp',
