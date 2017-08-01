@@ -11,9 +11,6 @@ const path = require('path');
 const androidstarters = require('androidstarters');
 const merge = require('lodash.merge');
 const rimraf = require('rimraf');
-const Rollbar = require("rollbar");
-const rollbar = new Rollbar(process.env.ROLLBAR_API_KEY);
-
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -70,7 +67,7 @@ app.post('/download', (req, res) => {
 		}
 	};
 
-	rollbar.log(JSON.stringify(config));
+	if ( config.templateName.length === 0 ) config.templatename = 'androidstarters-java';
 
 	const templateConfig = require('./config/' + config.templateName + '.json');
 
