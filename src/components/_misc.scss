@@ -1,3 +1,8 @@
+*[placeholder] {
+  color: mix($fill-dark, $fill-primary, 50%);
+  opacity: 0.85;
+}
+
 .u-input{
   padding-left: 16px;
   padding-top: 16px;
@@ -97,7 +102,6 @@
     border-bottom: solid 1px $fill-bright;
   }
 }
-
 
 .c-content{
   min-height: 400px;
