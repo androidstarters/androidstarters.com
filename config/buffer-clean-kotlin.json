@@ -84,11 +84,6 @@
       "props": false
     },
     {
-      "name": "travis.yml",
-      "prefixDot": true,
-      "props": false
-    },
-    {
       "name": "build.gradle",
       "prefixDot": false,
       "props": false
