@@ -1,0 +1,212 @@
+{
+  "defaultPackageDir": "/org/buffer/android/boilerplate",
+  "dirs": [
+    {
+      "appName": true,
+      "name": "",
+      "packageDir": false
+    },
+    {
+      "appName": true,
+      "name": "/mobile-ui",
+      "packageDir": false
+    },
+    {
+      "appName": true,
+      "name": "/mobile-ui/src/main/java/",
+      "packageDir": true
+    },
+    {
+      "appName": true,
+      "name": "/mobile-ui/src/androidTest/java/",
+      "packageDir": true
+    },
+    {
+      "appName": true,
+      "name": "/mobile-ui/src/test/java/",
+      "packageDir": true
+    },
+    {
+      "appName": true,
+      "name": "/cache/src/main/java/",
+      "packageDir": true
+    },
+    {
+      "appName": true,
+      "name": "/cache/src/test/java/",
+      "packageDir": true
+    },
+    {
+      "appName": true,
+      "name": "/data/src/main/java/",
+      "packageDir": true
+    },
+    {
+      "appName": true,
+      "name": "/data/src/test/java/",
+      "packageDir": true
+    },
+    {
+      "appName": true,
+      "name": "/domain/src/main/java/",
+      "packageDir": true
+    },
+    {
+      "appName": true,
+      "name": "/domain/src/test/java/",
+      "packageDir": true
+    },
+    {
+      "appName": true,
+      "name": "/presentation/src/main/java/",
+      "packageDir": true
+    },
+    {
+      "appName": true,
+      "name": "/presentation/src/test/java/",
+      "packageDir": true
+    },
+    {
+      "appName": true,
+      "name": "/remote/src/main/java/",
+      "packageDir": true
+    },
+    {
+      "appName": true,
+      "name": "/remote/src/test/java/",
+      "packageDir": true
+    }
+  ],
+  "files": [
+    {
+      "name": "gitignore",
+      "prefixDot": true,
+      "props": false
+    },
+    {
+      "name": "build.gradle",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "dependencies.gradle",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "gradlew",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "gradlew.bat",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "readme.md",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "settings.gradle",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "mobile-ui/gitignore",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "cache/gitignore",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "remote/gitignore",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "data/gitignore",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "domain/gitignore",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "presentation/gitignore",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "gradle",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "art",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "mobile-ui/src/main/res",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "mobile-ui/build.gradle",
+      "prefixDot": false,
+      "props": true
+    },
+    {
+      "name": "cache/build.gradle",
+      "prefixDot": false,
+      "props": true
+    },
+    {
+      "name": "data/build.gradle",
+      "prefixDot": false,
+      "props": true
+    },
+    {
+      "name": "domain/build.gradle",
+      "prefixDot": false,
+      "props": true
+    },
+    {
+      "name": "presentation/build.gradle",
+      "prefixDot": false,
+      "props": true
+    },
+    {
+      "name": "remote/build.gradle",
+      "prefixDot": false,
+      "props": true
+    },
+    {
+      "name": "mobile-ui/src/main/AndroidManifest.xml",
+      "prefixDot": false,
+      "props": true
+    },
+    {
+      "name": "mobile-ui/src/androidTest/AndroidManifest.xml",
+      "prefixDot": false,
+      "props": true
+    },
+    {
+      "name": "cache/src/main/AndroidManifest.xml",
+      "prefixDot": false,
+      "props": true
+    },
+    {
+      "name": "mobile-ui/src/main/res/layout",
+      "prefixDot": false,
+      "props": true
+    }
+  ]
+}

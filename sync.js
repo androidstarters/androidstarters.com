@@ -2,7 +2,7 @@ var each = require('async-each');
 const yeomanSync = require('yeoman-sync');
 
 let config = {
-  destination: 'buffer-clean-kotlin',
+  destination: 'buffer-clean-architecture-components-kotlin',
   rename: [{
     dest: 'gitignore',
     src: '.gitignore'
@@ -30,8 +30,8 @@ let config = {
     replacement: '<%= appPackage %>'
   }],
   repo: {
-    branchName: 'develop',
-    url: 'https://github.com/bufferapp/android-clean-architecture-boilerplate.git'
+    branchName: 'master',
+    url: 'https://github.com/bufferapp/clean-architecture-components-boilerplate.git'
   }
 };
 

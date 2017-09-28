@@ -17,6 +17,12 @@ export var architectures = [{
     desc: 'Kotlin Android boilerplate project using clean architecture',
     gh: 'https://github.com/bufferapp/android-clean-architecture-boilerplate.git'
 }, {
+    name: 'Buffer Kotlin Android Clean Architecture Components Boilerplate',
+    templateName: 'buffer-clean-architecture-components-kotlin',
+    license: 'MIT',
+    desc: 'Kotlin Android boilerplate project using clean architecture',
+    gh: 'https://github.com/bufferapp/clean-architecture-components-boilerplate.git'
+}, {
     name: 'Mindorks MVP',
     templateName: 'mindorks-mvp',
     license: 'Apache 2',
