@@ -1,20 +1,38 @@
 ext {
     versions = [
-            support       : "25.2.0",
-            firebase      : '10.2.0',
-            okHttp        : "3.5.0",
-            retrofit      : '2.2.0',
-            espresso      : '2.2.2',
-            espressoRunner: '0.5',
+            support         : "26.1.0",
+            firebase        : '11.4.0',
+            moshi           : "1.5.0",
+            okHttp          : "3.9.0",
+            retrofit        : '2.3.0',
+            dagger          : '2.11',
+            butterKnife     : '8.7.0',
+            rxKotlin        : '2.1.0',
+            rxAndroid       : '2.0.1',
+            rxPermissions   : '0.9.4@aar',
+            sqlbrite        : '1.1.2',
+            traceur         : '1.0.1',
+            stetho          : '1.5.0',
+            timber          : '4.5.1',
+            glide           : '4.1.1',
+            sherlock        : '1.0.3@aar',
+
+            espresso        : '3.0.1',
+            testRunner      : '1.0.1',
+            hamcrest        : '1.4-atlassian-1',
+            restMock        : '0.2.2',
+            mockito         : '2.10.0',
+            junit           : '4.12',
+            robolectric     : '3.4.2',
+            assertj         : '1.1.1',
             powerMock     : '1.6.6',
-            hamcrest      : '1.3',
-            restMock      : '0.2.0',
-            dagger        : '2.8',
-            butterKnife   : '8.5.1'
+            leakcanary    : '1.5.4',
+            stethOkhttp   : '1.5.0',
+            multiDex      : '1.0.2'
     ]
 
-    mockito = [mockito: "org.mockito:mockito-core:2.6.8"]
-    junit = [junit: "junit:junit:4.12"]
+    mockito = [mockito: "org.mockito:mockito-core:$versions.mockito"]
+    junit = [junit: "junit:junit:$versions.junit"]
     restMock = [restMock: "com.github.andrzejchm.RESTMock:android:$versions.restMock"]
 
     supportDeps = [
@@ -23,24 +41,32 @@ ext {
             design           : "com.android.support:design:$versions.support",
             recyclerView     : "com.android.support:recyclerview-v7:$versions.support",
             supportAnnotation: "com.android.support:support-annotations:$versions.support",
-            gridLayout       : "com.android.support:gridlayout-v7:$versions.support"
+            gridLayout       : "com.android.support:gridlayout-v7:$versions.support",
+            multiDex         : "com.android.support:multidex:$versions.multiDex"
     ]
 
     rxJava = [
-            rxKotlin : 'io.reactivex.rxjava2:rxkotlin:2.0.3',
-            rxAndroid: "io.reactivex.rxjava2:rxandroid:2.0.1"
+            rxKotlin : "io.reactivex.rxjava2:rxkotlin:$versions.rxKotlin",
+            rxAndroid: "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
+            traceur         : "com.tspoon.traceur:traceur:$versions.traceur",
+            rxRermissions   : "com.tbruyelle.rxpermissions:rxpermissions:$versions.rxPermissions"
     ]
 
     retrofit = [
             retrofit     : "com.squareup.retrofit2:retrofit:$versions.retrofit",
             rxAdapter    : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
-            gsonConverter: "com.squareup.retrofit2:converter-gson:$versions.retrofit",
-            sqlbrite     : "com.squareup.sqlbrite:sqlbrite:1.1.1"
+            moshiConverter: "com.squareup.retrofit2:converter-moshi:$versions.retrofit",
+            sqlbrite     : "com.squareup.sqlbrite:sqlbrite:$versions.sqlbrite"
+    ]
+
+    moshi = [
+            moshi: "com.squareup.moshi:moshi-kotlin:$versions.moshi"
     ]
 
     okHttp = [
             logger: "com.squareup.okhttp3:logging-interceptor:$versions.okHttp",
-            okhttp  : "com.squareup.okhttp3:okhttp:$versions.okHttp"
+            okhttp  : "com.squareup.okhttp3:okhttp:$versions.okHttp",
+            stetho  : "com.facebook.stetho:stetho-okhttp3:$versions.stetho"
     ]
 
     googlePlay = [
@@ -49,31 +75,64 @@ ext {
             firebaseCore     : "com.google.firebase:firebase-core:$versions.firebase",
             firebaseMessaging: "com.google.firebase:firebase-messaging:$versions.firebase"
     ]
+    onlyDebug = [
+            chuck   : "com.readystatesoftware.chuck:library:1.1.0"
+    ]
+
+    onlyRelease = [
+            chuckNoOp       : 'com.readystatesoftware.chuck:library-no-op:1.0.4',
+            sherlockNoOp    : 'com.github.ajitsing:sherlock-no-op:1.0.3@aar'
+    ]
+
     unitTest = [
             harcrestCore        : "org.hamcrest:hamcrest-core:$versions.hamcrest",
             harmcrestLib        : "org.hamcrest:hamcrest-library:$versions.hamcrest",
             hamcrestIntegration : "org.hamcrest:hamcrest-integration:$versions.hamcrest",
-            robolectric         : "org.robolectric:robolectric:3.2.2",
+            robolectric         : "org.robolectric:robolectric:$versions.robolectric",
             supportAnnotation   : "com.android.support:support-annotations:$versions.support",
             restMock            : "com.github.andrzejchm.RESTMock:android:$versions.restMock",
-            assertj             : "com.squareup.assertj:assertj-android:1.1.1"
+            assertj             : "com.squareup.assertj:assertj-android:$versions.assertj",
+            kotlinTest          : "org.jetbrains.kotlin:kotlin-test:$kotlin_version",
+            kotlinJunit         : "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
     ] + junit + mockito + restMock
 
     androidTests = [
-            espressoCore   : "com.android.support.test.espresso:espresso-core:$versions.espresso",
-            espressoContrib: "com.android.support.test.espresso:espresso-contrib:$versions.espresso",
-            espressoIntents: "com.android.support.test.espresso:espresso-intents:$versions.espresso",
-            testRunner     : "com.android.support.test:runner:$versions.espressoRunner",
-            testRules      : "com.android.support.test:rules:$versions.espressoRunner",
+            mockitoAndroid      : "org.mockito:mockito-android:$versions.mockito",
+            espressoCore        : "com.android.support.test.espresso:espresso-core:$versions.espresso",
+            espressoContrib     : "com.android.support.test.espresso:espresso-contrib:$versions.espresso",
+            espressoIntents     : "com.android.support.test.espresso:espresso-intents:$versions.espresso",
+            espressoAcc         : "com.android.support.test.espresso:espresso-accessibility:$versions.espresso",
+            espressoIdle        : "com.android.support.test.espresso:espresso-idling-resource:$versions.espresso",
+            espressoConcurrent  : "com.android.support.test.espresso.idling:idling-concurrent:$versions.espresso",
+            espressoNetIdle     : "com.android.support.test.espresso.idling:idling-net:$versions.espresso",
+            testRunner          : "com.android.support.test:runner:$versions.testRunner",
+            testRules           : "com.android.support.test:rules:$versions.testRunner"
     ] + mockito + restMock
 
-    supportLibs = supportDeps.values()
-    networkLibs = retrofit.values() + okHttp.values()
-    rxJavaLibs = rxJava.values()
-    googlePlayLibs = googlePlay.values()
-    unitTestLibs = unitTest.values()
-    androidTestsLibs = androidTests.values() + supportLibs
+    leakCannary = "com.squareup.leakcanary:leakcanary-android:1.5.1"
+    timber = "com.jakewharton.timber:timber:$versions.timber"
+    sherlock = "com.github.ajitsing:sherlock:$versions.sherlock"
 
-    leakCannary = "com.squareup.leakcanary:leakcanary-android:1.5"
+    dagger = "com.google.dagger:dagger:$versions.dagger"
     daggerCompiler = "com.google.dagger:dagger-compiler:$versions.dagger"
+
+    butterKnife = "com.jakewharton:butterknife:$versions.butterKnife"
+    butterKnifeCompiler = "com.jakewharton:butterknife-compiler:$versions.butterKnife"
+
+    glide = "com.github.bumptech.glide:glide:$versions.glide"
+    glideCompiler = "com.github.bumptech.glide:compiler:$versions.glide"
+    glideOkhttp = "com.github.bumptech.glide:okhttp3-integration:$versions.glide"
+
+    googlePlayLibs = googlePlay.values()
+    supportLibs = supportDeps.values()
+    networkLibs = retrofit.values() + okHttp.values() + moshi.values()
+    rxJavaLibs = rxJava.values()
+    otherLibs = [butterKnife, timber, dagger, glide]
+
+    debugLibs = onlyDebug.values() + leakCannary
+    releaseLibs = onlyRelease.values() + leakCannary
+    annotationProcessorLibs = [butterKnifeCompiler, daggerCompiler, glideCompiler]
+
+    unitTestLibs = unitTest.values() + leakCannary
+    androidTestsLibs = androidTests.values() + supportLibs
 }

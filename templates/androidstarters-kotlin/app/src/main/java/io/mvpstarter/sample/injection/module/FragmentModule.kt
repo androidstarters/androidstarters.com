@@ -9,22 +9,22 @@ import dagger.Provides
 import <%= appPackage %>.injection.ActivityContext
 
 @Module
-class FragmentModule(private val mFragment: Fragment) {
+class FragmentModule(private val fragment: Fragment) {
 
     @Provides
     internal fun providesFragment(): Fragment {
-        return mFragment
+        return fragment
     }
 
     @Provides
     internal fun provideActivity(): Activity {
-        return mFragment.activity
+        return fragment.activity
     }
 
     @Provides
     @ActivityContext
     internal fun providesContext(): Context {
-        return mFragment.activity
+        return fragment.activity
     }
 
 }

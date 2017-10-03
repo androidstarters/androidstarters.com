@@ -1,7 +1,5 @@
 package <%= appPackage %>.features.detail
 
-import <%= appPackage %>.R
-import <%= appPackage %>.features.base.BaseActivity
 import android.os.Bundle
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -9,10 +7,12 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import <%= appPackage %>.R
+import <%= appPackage %>.features.base.BaseActivity
 
 class MapsSampleActivity : BaseActivity(), OnMapReadyCallback {
 
-    private var mMap: GoogleMap? = null
+    private var map: GoogleMap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,9 +22,7 @@ class MapsSampleActivity : BaseActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
     }
 
-    override val layout: Int
-        get() = R.layout.activity_maps_sample
-
+    override fun layoutId() = R.layout.activity_maps_sample
 
     /**
      * Manipulates the map once available.
@@ -36,7 +34,7 @@ class MapsSampleActivity : BaseActivity(), OnMapReadyCallback {
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
+        map = googleMap
 
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(-34.0, 151.0)

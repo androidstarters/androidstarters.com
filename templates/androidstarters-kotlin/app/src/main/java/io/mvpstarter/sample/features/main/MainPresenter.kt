@@ -1,31 +1,30 @@
 package <%= appPackage %>.features.main
 
 import <%= appPackage %>.data.DataManager
-import <%= appPackage %>.injection.ConfigPersistent
 import <%= appPackage %>.features.base.BasePresenter
+import <%= appPackage %>.injection.ConfigPersistent
 import <%= appPackage %>.util.rx.scheduler.SchedulerUtils
 import javax.inject.Inject
 
 @ConfigPersistent
 class MainPresenter @Inject
-constructor(private val mDataManager: DataManager) : BasePresenter<MainMvpView>() {
-
-    override fun attachView(mvpView: MainMvpView) {
-        super.attachView(mvpView)
-    }
+constructor(private val dataManager: DataManager) : BasePresenter<MainMvpView>() {
 
     fun getPokemon(limit: Int) {
         checkViewAttached()
         mvpView?.showProgress(true)
-        mDataManager.getPokemonList(limit)
+        dataManager.getPokemonList(limit)
                 .compose(SchedulerUtils.ioToMain<List<String>>())
                 .subscribe({ pokemons ->
-                    mvpView?.showProgress(false)
-                    mvpView?.showPokemon(pokemons)
+                    mvpView?.apply {
+                        showProgress(false)
+                        showPokemon(pokemons)
+                    }
                 }) { throwable ->
-                    mvpView?.showProgress(false)
-                    mvpView?.showError(throwable)
+                    mvpView?.apply {
+                        showProgress(false)
+                        showError(throwable)
+                    }
                 }
     }
-
 }

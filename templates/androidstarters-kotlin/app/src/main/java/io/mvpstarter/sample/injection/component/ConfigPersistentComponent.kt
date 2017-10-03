@@ -1,11 +1,11 @@
 package <%= appPackage %>.injection.component
 
+import dagger.Component
+import <%= appPackage %>.features.base.BaseActivity
+import <%= appPackage %>.features.base.BaseFragment
 import <%= appPackage %>.injection.ConfigPersistent
 import <%= appPackage %>.injection.module.ActivityModule
 import <%= appPackage %>.injection.module.FragmentModule
-import <%= appPackage %>.features.base.BaseActivity
-import <%= appPackage %>.features.base.BaseFragment
-import dagger.Component
 
 /**
  * A dagger component that will live during the lifecycle of an Activity or Fragment but it won't
@@ -15,7 +15,7 @@ import dagger.Component
  * configuration changes (for example Presenters).
  */
 @ConfigPersistent
-@Component(dependencies = arrayOf(ApplicationComponent::class))
+@Component(dependencies = arrayOf(AppComponent::class))
 interface ConfigPersistentComponent {
 
     fun activityComponent(activityModule: ActivityModule): ActivityComponent

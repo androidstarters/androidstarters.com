@@ -1,8 +1,8 @@
 package <%= appPackage %>.data.local
 
-import <%= appPackage %>.injection.ApplicationContext
 import android.content.Context
 import android.content.SharedPreferences
+import <%= appPackage %>.injection.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -11,14 +11,14 @@ import javax.inject.Singleton
 class PreferencesHelper @Inject
 constructor(@ApplicationContext context: Context) {
 
-    private val mPref: SharedPreferences
+    private val preferences: SharedPreferences
 
     init {
-        mPref = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)
+        preferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)
     }
 
     fun clear() {
-        mPref.edit().clear().apply()
+        preferences.edit().clear().apply()
     }
 
     companion object {
