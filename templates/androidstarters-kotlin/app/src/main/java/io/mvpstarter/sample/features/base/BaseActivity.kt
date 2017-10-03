@@ -1,15 +1,16 @@
 package <%= appPackage %>.features.base
 
+import android.os.Bundle
+import android.support.annotation.LayoutRes
+import android.support.v4.util.LongSparseArray
+import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
+import butterknife.ButterKnife
 import <%= appPackage %>.MvpStarterApplication
 import <%= appPackage %>.injection.component.ActivityComponent
 import <%= appPackage %>.injection.component.ConfigPersistentComponent
 import <%= appPackage %>.injection.component.DaggerConfigPersistentComponent
 import <%= appPackage %>.injection.module.ActivityModule
-import android.os.Bundle
-import android.support.v4.util.LongSparseArray
-import android.support.v7.app.AppCompatActivity
-import android.view.MenuItem
-import butterknife.ButterKnife
 import timber.log.Timber
 import java.util.concurrent.atomic.AtomicLong
 
@@ -24,65 +25,59 @@ import java.util.concurrent.atomic.AtomicLong
  */
 abstract class BaseActivity : AppCompatActivity() {
 
-    private var mActivityComponent: ActivityComponent? = null
-    private var mActivityId: Long = 0
+    private var activityComponent: ActivityComponent? = null
+    private var activityId = 0L
+
+    companion object {
+        private val KEY_ACTIVITY_ID = "KEY_ACTIVITY_ID"
+        private val NEXT_ID = AtomicLong(0)
+        private val componentsArray = LongSparseArray<ConfigPersistentComponent>()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(layout)
+        setContentView(layoutId())
         ButterKnife.bind(this)
         // Create the ActivityComponent and reuses cached ConfigPersistentComponent if this is
         // being called after a configuration change.
-        mActivityId = savedInstanceState?.getLong(KEY_ACTIVITY_ID) ?: NEXT_ID.getAndIncrement()
+        activityId = savedInstanceState?.getLong(KEY_ACTIVITY_ID) ?: NEXT_ID.getAndIncrement()
         val configPersistentComponent: ConfigPersistentComponent
-        if (sComponentsArray.get(mActivityId) == null) {
-            Timber.i("Creating new ConfigPersistentComponent id=%d", mActivityId)
+        if (componentsArray.get(activityId) == null) {
+            Timber.i("Creating new ConfigPersistentComponent id=%d", activityId)
             configPersistentComponent = DaggerConfigPersistentComponent.builder()
-                    .applicationComponent(MvpStarterApplication[this].component)
+                    .appComponent(MvpStarterApplication[this].component)
                     .build()
-            sComponentsArray.put(mActivityId, configPersistentComponent)
+            componentsArray.put(activityId, configPersistentComponent)
         } else {
-            Timber.i("Reusing ConfigPersistentComponent id=%d", mActivityId)
-            configPersistentComponent = sComponentsArray.get(mActivityId)
+            Timber.i("Reusing ConfigPersistentComponent id=%d", activityId)
+            configPersistentComponent = componentsArray.get(activityId)
         }
-        mActivityComponent = configPersistentComponent.activityComponent(ActivityModule(this))
-        mActivityComponent?.inject(this)
+        activityComponent = configPersistentComponent.activityComponent(ActivityModule(this))
+        activityComponent?.inject(this)
     }
 
-    abstract val layout: Int
+    @LayoutRes abstract fun layoutId(): Int
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putLong(KEY_ACTIVITY_ID, mActivityId)
+        outState.putLong(KEY_ACTIVITY_ID, activityId)
     }
 
     override fun onDestroy() {
         if (!isChangingConfigurations) {
-            Timber.i("Clearing ConfigPersistentComponent id=%d", mActivityId)
-            sComponentsArray.remove(mActivityId)
+            Timber.i("Clearing ConfigPersistentComponent id=%d", activityId)
+            componentsArray.remove(activityId)
         }
         super.onDestroy()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        android.R.id.home -> {
+            finish()
+            true
         }
+        else -> super.onOptionsItemSelected(item)
     }
 
-    fun activityComponent(): ActivityComponent {
-        return mActivityComponent as ActivityComponent
-    }
-
-    companion object {
-
-        private val KEY_ACTIVITY_ID = "KEY_ACTIVITY_ID"
-        private val NEXT_ID = AtomicLong(0)
-        private val sComponentsArray = LongSparseArray<ConfigPersistentComponent>()
-    }
-
+    fun activityComponent() = activityComponent as ActivityComponent
 }

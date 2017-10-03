@@ -1,17 +1,17 @@
 package <%= appPackage %>.data
 
 import <%= appPackage %>.data.model.Pokemon
-import <%= appPackage %>.data.remote.MvpStarterService
+import <%= appPackage %>.data.remote.PokemonApi
 import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class DataManager @Inject
-constructor(private val mMvpStarterService: MvpStarterService) {
+constructor(private val pokemonApi: PokemonApi) {
 
     fun getPokemonList(limit: Int): Single<List<String>> {
-        return mMvpStarterService.getPokemonList(limit)
+        return pokemonApi.getPokemonList(limit)
                 .toObservable()
                 .flatMapIterable { (results) -> results }
                 .map { (name) -> name }
@@ -19,7 +19,6 @@ constructor(private val mMvpStarterService: MvpStarterService) {
     }
 
     fun getPokemon(name: String): Single<Pokemon> {
-        return mMvpStarterService.getPokemon(name)
+        return pokemonApi.getPokemon(name)
     }
-
 }

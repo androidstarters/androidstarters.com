@@ -3,7 +3,7 @@ package <%= appPackage %>
 import <%= appPackage %>.common.TestDataFactory
 import <%= appPackage %>.data.DataManager
 import <%= appPackage %>.data.model.PokemonListResponse
-import <%= appPackage %>.data.remote.MvpStarterService
+import <%= appPackage %>.data.remote.PokemonApi
 import <%= appPackage %>.util.RxSchedulersOverrideRule
 import io.reactivex.Single
 import org.junit.Before
@@ -19,14 +19,14 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class DataManagerTest {
 
-    @Rule @JvmField val mOverrideSchedulersRule = RxSchedulersOverrideRule()
-    @Mock lateinit var mMockMvpStarterService: MvpStarterService
+    @Rule @JvmField val overrideSchedulersRule = RxSchedulersOverrideRule()
+    @Mock lateinit var mockPokemonApi: PokemonApi
 
-    private var mDataManager: DataManager? = null
+    private var dataManager: DataManager? = null
 
     @Before
     fun setUp() {
-        mDataManager = DataManager(mMockMvpStarterService)
+        dataManager = DataManager(mockPokemonApi)
     }
 
     @Test
@@ -34,10 +34,10 @@ class DataManagerTest {
         val namedResourceList = TestDataFactory.makeNamedResourceList(5)
         val pokemonListResponse = PokemonListResponse(namedResourceList)
 
-        `when`(mMockMvpStarterService.getPokemonList(anyInt()))
+        `when`(mockPokemonApi.getPokemonList(anyInt()))
                 .thenReturn(Single.just(pokemonListResponse))
 
-        mDataManager?.getPokemonList(10)
+        dataManager?.getPokemonList(10)
                 ?.test()
                 ?.assertComplete()
                 ?.assertValue(TestDataFactory.makePokemonNameList(namedResourceList))
@@ -47,10 +47,10 @@ class DataManagerTest {
     fun getPokemonCompletesAndEmitsPokemon() {
         val name = "charmander"
         val pokemon = TestDataFactory.makePokemon(name)
-        `when`(mMockMvpStarterService.getPokemon(anyString()))
+        `when`(mockPokemonApi.getPokemon(anyString()))
                 .thenReturn(Single.just(pokemon))
 
-        mDataManager?.getPokemon(name)
+        dataManager?.getPokemon(name)
                 ?.test()
                 ?.assertComplete()
                 ?.assertValue(pokemon)

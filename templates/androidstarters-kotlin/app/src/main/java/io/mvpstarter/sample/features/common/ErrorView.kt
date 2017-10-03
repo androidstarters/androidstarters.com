@@ -1,6 +1,5 @@
 package <%= appPackage %>.features.common
 
-import <%= appPackage %>.R
 import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
@@ -10,10 +9,11 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import butterknife.ButterKnife
 import butterknife.OnClick
+import <%= appPackage %>.R
 
 class ErrorView : LinearLayout {
 
-    private var mErrorListener: ErrorListener? = null
+    private var errorListener: ErrorListener? = null
 
     constructor(context: Context) : super(context) {
         init()
@@ -41,13 +41,11 @@ class ErrorView : LinearLayout {
 
     @OnClick(R.id.button_reload)
     fun onReloadButtonClick() {
-        if (mErrorListener != null) {
-            mErrorListener?.onReloadData()
-        }
+        errorListener?.let { errorListener?.onReloadData() }
     }
 
     fun setErrorListener(errorListener: ErrorListener) {
-        mErrorListener = errorListener
+        this.errorListener = errorListener
     }
 
     interface ErrorListener {
