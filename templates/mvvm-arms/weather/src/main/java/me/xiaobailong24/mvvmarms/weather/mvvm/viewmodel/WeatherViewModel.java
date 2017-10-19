@@ -1,0 +1,90 @@
+package <%= appPackage %>.weather.mvvm.viewmodel;
+
+import android.app.Application;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
+import <%= appPackage %>.di.scope.AppScope;
+import <%= appPackage %>.mvvm.BaseViewModel;
+import <%= appPackage %>.repository.utils.RepositoryUtils;
+import <%= appPackage %>.weather.mvvm.model.WeatherModel;
+import <%= appPackage %>.weather.mvvm.model.entry.Location;
+import timber.log.Timber;
+
+/**
+ * Created by xiaobailong24 on 2017/7/31.
+ * MVVM WeatherViewModel
+ */
+@AppScope
+public class WeatherViewModel extends BaseViewModel<WeatherModel> {
+    private MutableLiveData<List<String>> mLocationPaths;
+    private MutableLiveData<String> mLocation;//可以与 Fragment 共享此数据
+
+    @Inject
+    public WeatherViewModel(Application application, WeatherModel model) {
+        super(application, model);
+    }
+
+    //获取储存的位置记录
+    public LiveData<List<String>> getHistoryLocations() {
+        if (mLocationPaths == null)
+            mLocationPaths = new MutableLiveData<>();
+        loadLocationPaths();
+        return mLocationPaths;
+    }
+
+    private void loadLocationPaths() {
+        Observable.create((ObservableOnSubscribe<List<Location>>) e -> e.onNext(mModel.getAllLocations()))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(locations -> {
+                    List<String> locationPaths = new ArrayList<>();
+                    for (Location location : locations) {
+                        Timber.d("loadLocationPaths: " + location.getPath());
+                        locationPaths.add(location.getPath());
+                    }
+                    return locationPaths;
+                })
+                .subscribe(new ErrorHandleSubscriber<List<String>>
+                        (RepositoryUtils.INSTANCE.obtainRepositoryComponent(getApplication()).rxErrorHandler()) {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        super.onSubscribe(d);
+                        addDispose(d);
+                    }
+
+                    @Override
+                    public void onNext(@NonNull List<String> locationPaths) {
+                        mLocationPaths.setValue(locationPaths);
+                    }
+                });
+    }
+
+    public MutableLiveData<String> getLocation() {
+        if (mLocation == null) {
+            mLocation = new MutableLiveData<>();
+            mLocation.setValue("北京");
+        }
+        return mLocation;
+    }
+
+    @Override
+    public void onCleared() {
+        super.onCleared();
+        this.mLocationPaths = null;
+        this.mLocation = null;
+    }
+
+}

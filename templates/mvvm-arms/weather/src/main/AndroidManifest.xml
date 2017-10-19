@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="<%= appPackage %>.weather">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application
+        android:name=".app.MainApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".mvvm.view.activity.WeatherActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!--arms配置-->
+        <meta-data
+            android:name="<%= appPackage %>.weather.app.RepositoryConfiguration"
+            android:value="ConfigRepository"/>
+        <meta-data
+            android:name="<%= appPackage %>.weather.app.LifecycleConfiguration"
+            android:value="ConfigLifecycle"/>
+        <meta-data
+            android:name="<%= appPackage %>.weather.app.ArmsConfiguration"
+            android:value="ConfigArms"/>
+
+    </application>
+
+</manifest>
