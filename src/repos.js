@@ -57,7 +57,7 @@ export var architectures = [{
     templateName: 'mindorks-mvp',
     license: 'Apache 2',
     desc: 'Extension of the android-mvp-architecture for very large projects.',
-    gh: 'https://github.com/MindorksOpenSource/android-mvp-interactor-architecture'
+    gh: 'https://github.com/MindorksOpenSource/android-mvp-architecture'
 }, {
     name: 'Mindorks MVP Enhanced',
     templateName: 'mindorks-mvp-interactor',
