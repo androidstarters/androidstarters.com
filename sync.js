@@ -36,6 +36,57 @@ let configs = [{
     url: 'https://github.com/androidstarters/kotlin-android-starter.git'
   }
 }, {
+  destination: 'mindorks-mvp',
+  rename: [{
+    dest: 'gitignore',
+    src: '.gitignore'
+  }, {
+    dest: 'app/gitignore',
+    src: 'app/.gitignore'
+  }],
+  replace: [{
+    regex: 'com.mindorks.framework.mvp',
+    replacement: '<%= appPackage %>'
+  }],
+  repo: {
+    branchName: 'master',
+    url: 'https://github.com/MindorksOpenSource/android-mvp-architecture'
+  }
+}, {
+  destination: 'mindorks-mvp-interactor',
+  rename: [{
+    dest: 'gitignore',
+    src: '.gitignore'
+  }, {
+    dest: 'app/gitignore',
+    src: 'app/.gitignore'
+  }],
+  replace: [{
+    regex: 'com.mindorks.framework.mvp',
+    replacement: '<%= appPackage %>'
+  }],
+  repo: {
+    branchName: 'master',
+    url: 'https://github.com/MindorksOpenSource/android-mvp-interactor-architecture'
+  }
+}, {
+  destination: 'mindorks-mvvm',
+  rename: [{
+    dest: 'gitignore',
+    src: '.gitignore'
+  }, {
+    dest: 'app/gitignore',
+    src: 'app/.gitignore'
+  }],
+  replace: [{
+    regex: 'com.mindorks.framework.mvvm',
+    replacement: '<%= appPackage %>'
+  }],
+  repo: {
+    branchName: 'master',
+    url: 'https://github.com/MindorksOpenSource/android-mvvm-architecture'
+  }
+},{
   destination: 'buffer-clean-kotlin',
   rename: [{
     dest: 'gitignore',

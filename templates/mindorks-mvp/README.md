@@ -66,8 +66,13 @@ This repository contains a detailed sample app that implements MVP architecture 
 ### Playstore App of Mindorks build on this MVP architecture
 [Correctify: An English Editing and Learning app](https://play.google.com/store/apps/details?id=com.mindorks.correctify)
 
+### Looking for MVVM Architecture - [Check here](https://github.com/MindorksOpenSource/android-mvvm-architecture)
+
 ### Mindorks open source projects
 [Check out Mindorks awesome open source projects here](https://mindorks.com/open-source-projects)
+
+### How do I use this project?
+This is a boilerplate project aimed to help bootstrap new Android MVP Applications. Feel free to fork this application or use [AndroidStarters](http://androidstarters.com/) to create new app using this boilerplate.
 
 ### License
 ```

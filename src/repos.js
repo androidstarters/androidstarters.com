@@ -56,7 +56,7 @@ export var architectures = [{
     name: 'Mindorks MVP',
     templateName: 'mindorks-mvp',
     license: 'Apache 2',
-    desc: 'Extension of the android-mvp-architecture for very large projects.',
+    desc: 'This repository contains a detailed sample app that implements MVP architecture using Dagger2, GreenDao, RxJava2, FastAndroidNetworking and PlaceholderView',
     gh: 'https://github.com/MindorksOpenSource/android-mvp-architecture'
 }, {
     name: 'Mindorks MVP Enhanced',
@@ -64,4 +64,10 @@ export var architectures = [{
     license: 'Apache 2',
     desc: 'Extension of the android-mvp-architecture for very large projects.',
     gh: 'https://github.com/MindorksOpenSource/android-mvp-interactor-architecture'
+}, {
+    name: 'Mindorks MVVM',
+    templateName: 'mindorks-mvvm',
+    license: 'Apache 2',
+    desc: 'This repository contains a detailed sample app that implements MVVM architecture using Dagger2, Room, RxJava2, FastAndroidNetworking and PlaceholderView',
+    gh: 'https://github.com/MindorksOpenSource/android-mvvm-architecture'
 }];
