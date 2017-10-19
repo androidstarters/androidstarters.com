@@ -46,10 +46,10 @@ let configs = [{
   }, {
     dest: 'lifecycle/gitignore',
     src: 'lifecycle/.gitignore'
-  },{
+  }, {
     dest: 'repository/gitignore',
     src: 'repository/.gitignore'
-  },{
+  }, {
     dest: 'weather/gitignore',
     src: 'weather/.gitignore'
   }],

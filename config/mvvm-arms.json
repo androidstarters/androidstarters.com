@@ -1,0 +1,112 @@
+{
+  "defaultPackageDir": "/me/xiaobailong24/mvvmarms",
+  "dirs": [
+    {
+      "appName": true,
+      "name": "",
+      "packageDir": false
+    },
+    {
+      "appName": true,
+      "name": "/app",
+      "packageDir": false
+    },
+    {
+      "appName": true,
+      "name": "/app/src/main/assets",
+      "packageDir": false
+    },
+    {
+      "appName": true,
+      "name": "/app/src/main/java/",
+      "packageDir": true
+    },
+    {
+      "appName": true,
+      "name": "/app/src/androidTest/java/",
+      "packageDir": true
+    },
+    {
+      "appName": true,
+      "name": "/app/src/test/java/",
+      "packageDir": true
+    }
+  ],
+  "files": [
+    {
+      "name": "gitignore",
+      "prefixDot": true,
+      "props": false
+    },
+    {
+      "name": "build.gradle",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "gradle.properties",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "gradlew",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "gradlew.bat",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "settings.gradle",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "app/gitignore",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "app/proguard-rules.pro",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "gradle",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "config",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "app/src/main/res",
+      "prefixDot": false,
+      "props": false
+    },
+    {
+      "name": "README.md",
+      "prefixDot": false,
+      "props": true
+    },
+    {
+      "name": "app/build.gradle",
+      "prefixDot": false,
+      "props": true
+    },
+    {
+      "name": "app/src/main/AndroidManifest.xml",
+      "prefixDot": false,
+      "props": true
+    },
+    {
+      "name": "app/src/main/res/layout",
+      "prefixDot": false,
+      "props": true
+    }
+  ]
+}
