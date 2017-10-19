@@ -52,6 +52,23 @@ let configs = [{
     branchName: 'master',
     url: 'https://github.com/MindorksOpenSource/android-mvp-architecture'
   }
+},{
+  destination: 'jshvarts-offline',
+  rename: [{
+    dest: 'gitignore',
+    src: '.gitignore'
+  }, {
+    dest: 'app/gitignore',
+    src: 'app/.gitignore'
+  }],
+  replace: [{
+    regex: 'com.example.offline',
+    replacement: '<%= appPackage %>'
+  }],
+  repo: {
+    branchName: 'master',
+    url: 'https://github.com/jshvarts/OfflineSampleApp'
+  }
 }, {
   destination: 'mindorks-mvp-interactor',
   rename: [{

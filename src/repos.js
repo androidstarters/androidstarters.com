@@ -23,6 +23,12 @@ export var architectures = [{
     desc: 'Kotlin Android boilerplate project using clean architecture',
     gh: 'https://github.com/bufferapp/clean-architecture-components-boilerplate.git'
 }, {
+    name: 'Offline First MVVM using Architecture Components',
+    templateName: 'jshvarts-offline',
+    license: 'Apache 2',
+    desc: 'Sample Offline-First MVVM app that uses Android Priority Job Queue, Room, Retrofit2, LiveData, LifecycleObserver, RxJava2, Dagger Android',
+    gh: 'https://github.com/jshvarts/OfflineSampleApp'
+}, {
     name: 'Google Samples MVP',
     templateName: 'googlesamples-mvp',
     license: 'Apache 2',
