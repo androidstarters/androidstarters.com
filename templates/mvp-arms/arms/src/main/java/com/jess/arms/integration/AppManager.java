@@ -13,7 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.integration;
+package <%= appPackage %>.integration;
 
 import android.app.Activity;
 import android.app.Application;
@@ -23,7 +23,7 @@ import android.os.Message;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 
-import com.jess.arms.base.delegate.AppLifecycles;
+import <%= appPackage %>.base.delegate.AppLifecycles;
 
 import org.simple.eventbus.EventBus;
 import org.simple.eventbus.Subscriber;

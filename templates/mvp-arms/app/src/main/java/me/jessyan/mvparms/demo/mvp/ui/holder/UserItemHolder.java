@@ -19,11 +19,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.jess.arms.base.BaseHolder;
-import com.jess.arms.di.component.AppComponent;
-import com.jess.arms.http.imageloader.ImageLoader;
-import com.jess.arms.http.imageloader.glide.ImageConfigImpl;
-import com.jess.arms.utils.ArmsUtils;
+import <%= appPackage %>.base.BaseHolder;
+import <%= appPackage %>.di.component.AppComponent;
+import <%= appPackage %>.http.imageloader.ImageLoader;
+import <%= appPackage %>.http.imageloader.glide.ImageConfigImpl;
+import <%= appPackage %>.utils.ArmsUtils;
 
 import butterknife.BindView;
 import io.reactivex.Observable;

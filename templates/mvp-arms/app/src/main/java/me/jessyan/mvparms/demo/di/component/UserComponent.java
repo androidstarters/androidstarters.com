@@ -15,8 +15,8 @@
   */
 package <%= appPackage %>.di.component;
 
-import com.jess.arms.di.component.AppComponent;
-import com.jess.arms.di.scope.ActivityScope;
+import <%= appPackage %>.di.component.AppComponent;
+import <%= appPackage %>.di.scope.ActivityScope;
 
 import dagger.Component;
 import <%= appPackage %>.di.module.UserModule;

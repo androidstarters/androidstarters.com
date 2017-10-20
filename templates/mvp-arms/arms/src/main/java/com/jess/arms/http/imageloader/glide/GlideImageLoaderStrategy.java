@@ -13,7 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.http.imageloader.glide;
+package <%= appPackage %>.http.imageloader.glide;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -24,9 +24,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.jess.arms.di.module.GlobalConfigModule;
-import com.jess.arms.http.imageloader.BaseImageLoaderStrategy;
-import com.jess.arms.http.imageloader.ImageConfig;
+import <%= appPackage %>.di.module.GlobalConfigModule;
+import <%= appPackage %>.http.imageloader.BaseImageLoaderStrategy;
+import <%= appPackage %>.http.imageloader.ImageConfig;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;

@@ -18,8 +18,8 @@ package <%= appPackage %>.app;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.jess.arms.http.GlobalHttpHandler;
-import com.jess.arms.http.RequestInterceptor;
+import <%= appPackage %>.http.GlobalHttpHandler;
+import <%= appPackage %>.http.RequestInterceptor;
 
 import org.json.JSONArray;
 import org.json.JSONException;

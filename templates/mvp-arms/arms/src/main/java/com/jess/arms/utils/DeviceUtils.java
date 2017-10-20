@@ -13,7 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.utils;
+package <%= appPackage %>.utils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

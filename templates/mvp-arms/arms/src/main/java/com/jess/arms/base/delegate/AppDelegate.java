@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jess.arms.base.delegate;
+package <%= appPackage %>.base.delegate;
 
 import android.app.Application;
 import android.content.ComponentCallbacks2;
@@ -21,19 +21,19 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 
-import com.jess.arms.base.App;
-import com.jess.arms.base.BaseApplication;
-import com.jess.arms.di.component.AppComponent;
-import com.jess.arms.di.component.DaggerAppComponent;
-import com.jess.arms.di.module.AppModule;
-import com.jess.arms.di.module.ClientModule;
-import com.jess.arms.di.module.GlobalConfigModule;
-import com.jess.arms.http.imageloader.glide.ImageConfigImpl;
-import com.jess.arms.integration.ActivityLifecycle;
-import com.jess.arms.integration.ConfigModule;
-import com.jess.arms.integration.ManifestParser;
-import com.jess.arms.integration.lifecycle.ActivityLifecycleForRxLifecycle;
-import com.jess.arms.utils.Preconditions;
+import <%= appPackage %>.base.App;
+import <%= appPackage %>.base.BaseApplication;
+import <%= appPackage %>.di.component.AppComponent;
+import <%= appPackage %>.di.component.DaggerAppComponent;
+import <%= appPackage %>.di.module.AppModule;
+import <%= appPackage %>.di.module.ClientModule;
+import <%= appPackage %>.di.module.GlobalConfigModule;
+import <%= appPackage %>.http.imageloader.glide.ImageConfigImpl;
+import <%= appPackage %>.integration.ActivityLifecycle;
+import <%= appPackage %>.integration.ConfigModule;
+import <%= appPackage %>.integration.ManifestParser;
+import <%= appPackage %>.integration.lifecycle.ActivityLifecycleForRxLifecycle;
+import <%= appPackage %>.utils.Preconditions;
 
 import java.util.ArrayList;
 import java.util.List;

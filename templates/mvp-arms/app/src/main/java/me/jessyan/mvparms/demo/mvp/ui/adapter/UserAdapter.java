@@ -17,8 +17,8 @@ package <%= appPackage %>.mvp.ui.adapter;
 
 import android.view.View;
 
-import com.jess.arms.base.BaseHolder;
-import com.jess.arms.base.DefaultAdapter;
+import <%= appPackage %>.base.BaseHolder;
+import <%= appPackage %>.base.DefaultAdapter;
 
 import java.util.List;
 

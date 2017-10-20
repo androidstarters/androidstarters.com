@@ -18,11 +18,11 @@ package <%= appPackage %>.mvp.presenter;
 import android.app.Application;
 import android.support.v7.widget.RecyclerView;
 
-import com.jess.arms.di.scope.ActivityScope;
-import com.jess.arms.integration.AppManager;
-import com.jess.arms.mvp.BasePresenter;
-import com.jess.arms.utils.PermissionUtil;
-import com.jess.arms.utils.RxLifecycleUtils;
+import <%= appPackage %>.di.scope.ActivityScope;
+import <%= appPackage %>.integration.AppManager;
+import <%= appPackage %>.mvp.BasePresenter;
+import <%= appPackage %>.utils.PermissionUtil;
+import <%= appPackage %>.utils.RxLifecycleUtils;
 
 import java.util.List;
 

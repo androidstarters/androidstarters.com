@@ -24,11 +24,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
-import com.jess.arms.base.BaseActivity;
-import com.jess.arms.utils.ArmsUtils;
+import <%= appPackage %>.base.BaseActivity;
+import <%= appPackage %>.utils.ArmsUtils;
 
 
-import static com.jess.arms.utils.Preconditions.checkNotNull;
+import static <%= appPackage %>.utils.Preconditions.checkNotNull;
 
 /**
   * 通过Template生成对应页面的MVP和Dagger代码,请注意输入框中输入的名字必须相同
@@ -105,7 +105,7 @@ Name: Component
 
 #if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
 
-import com.jess.arms.di.scope.ActivityScope;
+import <%= appPackage %>.di.scope.ActivityScope;
 
 import dagger.Component;
 
@@ -135,8 +135,8 @@ Name: Contract
 
 #if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
 
-import com.jess.arms.mvp.IView;
-import com.jess.arms.mvp.IModel;
+import <%= appPackage %>.mvp.IView;
+import <%= appPackage %>.mvp.IModel;
 
 /**
   * 通过Template生成对应页面的MVP和Dagger代码,请注意输入框中输入的名字必须相同
@@ -173,13 +173,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
-import com.jess.arms.base.BaseFragment
+import <%= appPackage %>.base.BaseFragment
 
-import com.jess.arms.utils.ArmsUtils;
+import <%= appPackage %>.utils.ArmsUtils;
 
 import butterknife.Bind;
 
-import static com.jess.arms.utils.Preconditions.checkNotNull;
+import static <%= appPackage %>.utils.Preconditions.checkNotNull;
 
 /**
   * 通过Template生成对应页面的MVP和Dagger代码,请注意输入框中输入的名字必须相同
@@ -276,11 +276,11 @@ Name: Model
 
 import android.app.Application;
 import com.google.gson.Gson;
-import com.jess.arms.integration.IRepositoryManager;
-import com.jess.arms.mvp.BaseModel;
+import <%= appPackage %>.integration.IRepositoryManager;
+import <%= appPackage %>.mvp.BaseModel;
 
-import static com.jess.arms.utils.Preconditions.checkNotNull;
-import com.jess.arms.di.scope.ActivityScope;
+import static <%= appPackage %>.utils.Preconditions.checkNotNull;
+import <%= appPackage %>.di.scope.ActivityScope;
 import javax.inject.Inject;
 
 /**
@@ -324,7 +324,7 @@ Name: Module
 
 import com.google.gson.Gson;
 import android.app.Application;
-import com.jess.arms.di.scope.ActivityScope;
+import <%= appPackage %>.di.scope.ActivityScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -373,10 +373,10 @@ Name: Presenter
 #if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
 
 import android.app.Application;
-import com.jess.arms.integration.AppManager;
-import com.jess.arms.di.scope.ActivityScope;
-import com.jess.arms.mvp.BasePresenter;
-import com.jess.arms.http.imageloader.ImageLoader;
+import <%= appPackage %>.integration.AppManager;
+import <%= appPackage %>.di.scope.ActivityScope;
+import <%= appPackage %>.mvp.BasePresenter;
+import <%= appPackage %>.http.imageloader.ImageLoader;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import javax.inject.Inject;
 

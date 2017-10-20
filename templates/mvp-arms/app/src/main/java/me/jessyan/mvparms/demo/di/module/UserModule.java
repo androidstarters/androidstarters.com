@@ -18,7 +18,7 @@ package <%= appPackage %>.di.module;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.jess.arms.di.scope.ActivityScope;
+import <%= appPackage %>.di.scope.ActivityScope;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.ArrayList;

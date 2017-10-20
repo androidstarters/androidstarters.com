@@ -15,7 +15,7 @@
   */
 package <%= appPackage %>.app.service;
 
-import com.jess.arms.base.BaseService;
+import <%= appPackage %>.base.BaseService;
 
 /**
  * ================================================

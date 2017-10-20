@@ -21,10 +21,10 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 
-import com.jess.arms.base.BaseActivity;
-import com.jess.arms.base.DefaultAdapter;
-import com.jess.arms.di.component.AppComponent;
-import com.jess.arms.utils.ArmsUtils;
+import <%= appPackage %>.base.BaseActivity;
+import <%= appPackage %>.base.DefaultAdapter;
+import <%= appPackage %>.di.component.AppComponent;
+import <%= appPackage %>.utils.ArmsUtils;
 import com.paginate.Paginate;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 

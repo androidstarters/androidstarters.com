@@ -15,9 +15,9 @@
   */
 package <%= appPackage %>.mvp.model;
 
-import com.jess.arms.di.scope.ActivityScope;
-import com.jess.arms.integration.IRepositoryManager;
-import com.jess.arms.mvp.BaseModel;
+import <%= appPackage %>.di.scope.ActivityScope;
+import <%= appPackage %>.integration.IRepositoryManager;
+import <%= appPackage %>.mvp.BaseModel;
 
 import java.util.List;
 

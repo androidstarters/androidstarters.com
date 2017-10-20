@@ -17,8 +17,8 @@ package <%= appPackage %>.mvp.contract;
 
 import android.app.Activity;
 
-import com.jess.arms.mvp.IModel;
-import com.jess.arms.mvp.IView;
+import <%= appPackage %>.mvp.IModel;
+import <%= appPackage %>.mvp.IView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.List;

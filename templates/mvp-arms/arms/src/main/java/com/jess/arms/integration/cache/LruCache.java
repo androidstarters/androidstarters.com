@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jess.arms.integration.cache;
+package <%= appPackage %>.integration.cache;
 
 import android.app.Application;
 import android.support.annotation.Nullable;
 
-import com.jess.arms.di.module.GlobalConfigModule;
+import <%= appPackage %>.di.module.GlobalConfigModule;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

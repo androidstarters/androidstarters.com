@@ -13,7 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.utils;
+package <%= appPackage %>.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -35,16 +35,16 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jess.arms.base.App;
-import com.jess.arms.di.component.AppComponent;
-import com.jess.arms.integration.AppManager;
+import <%= appPackage %>.base.App;
+import <%= appPackage %>.di.component.AppComponent;
+import <%= appPackage %>.integration.AppManager;
 
 import java.security.MessageDigest;
 
-import static com.jess.arms.integration.AppManager.APP_EXIT;
-import static com.jess.arms.integration.AppManager.KILL_ALL;
-import static com.jess.arms.integration.AppManager.SHOW_SNACKBAR;
-import static com.jess.arms.integration.AppManager.START_ACTIVITY;
+import static <%= appPackage %>.integration.AppManager.APP_EXIT;
+import static <%= appPackage %>.integration.AppManager.KILL_ALL;
+import static <%= appPackage %>.integration.AppManager.SHOW_SNACKBAR;
+import static <%= appPackage %>.integration.AppManager.START_ACTIVITY;
 
 /**
  * ================================================

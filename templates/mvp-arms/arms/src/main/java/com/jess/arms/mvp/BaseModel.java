@@ -13,9 +13,9 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.mvp;
+package <%= appPackage %>.mvp;
 
-import com.jess.arms.integration.IRepositoryManager;
+import <%= appPackage %>.integration.IRepositoryManager;
 
 /**
  * ================================================

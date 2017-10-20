@@ -15,8 +15,8 @@
   */
 package <%= appPackage %>.app.utils;
 
-import com.jess.arms.mvp.IView;
-import com.jess.arms.utils.RxLifecycleUtils;
+import <%= appPackage %>.mvp.IView;
+import <%= appPackage %>.utils.RxLifecycleUtils;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 
 import io.reactivex.Observable;

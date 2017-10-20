@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jess.arms.integration;
+package <%= appPackage %>.integration;
 
 import android.app.Application;
 import android.content.Context;
 
-import com.jess.arms.integration.cache.Cache;
-import com.jess.arms.integration.cache.CacheType;
-import com.jess.arms.mvp.IModel;
-import com.jess.arms.utils.Preconditions;
+import <%= appPackage %>.integration.cache.Cache;
+import <%= appPackage %>.integration.cache.CacheType;
+import <%= appPackage %>.mvp.IModel;
+import <%= appPackage %>.utils.Preconditions;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

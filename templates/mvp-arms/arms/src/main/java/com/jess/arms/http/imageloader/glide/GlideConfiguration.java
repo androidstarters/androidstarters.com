@@ -13,7 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.http.imageloader.glide;
+package <%= appPackage %>.http.imageloader.glide;
 
 import android.content.Context;
 
@@ -28,11 +28,11 @@ import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.load.engine.cache.MemorySizeCalculator;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.AppGlideModule;
-import com.jess.arms.di.component.AppComponent;
-import com.jess.arms.http.OkHttpUrlLoader;
-import com.jess.arms.http.imageloader.BaseImageLoaderStrategy;
-import com.jess.arms.utils.DataHelper;
-import com.jess.arms.utils.ArmsUtils;
+import <%= appPackage %>.di.component.AppComponent;
+import <%= appPackage %>.http.OkHttpUrlLoader;
+import <%= appPackage %>.http.imageloader.BaseImageLoaderStrategy;
+import <%= appPackage %>.utils.DataHelper;
+import <%= appPackage %>.utils.ArmsUtils;
 
 import java.io.File;
 import java.io.InputStream;

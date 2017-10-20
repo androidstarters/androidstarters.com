@@ -13,16 +13,16 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.di.module;
+package <%= appPackage %>.di.module;
 
 import android.app.Application;
 import android.content.Context;
 import android.support.annotation.Nullable;
 
 import com.google.gson.Gson;
-import com.jess.arms.http.GlobalHttpHandler;
-import com.jess.arms.http.RequestInterceptor;
-import com.jess.arms.utils.DataHelper;
+import <%= appPackage %>.http.GlobalHttpHandler;
+import <%= appPackage %>.http.RequestInterceptor;
+import <%= appPackage %>.utils.DataHelper;
 
 import java.io.File;
 import java.io.IOException;

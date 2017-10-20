@@ -21,11 +21,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
-import com.jess.arms.base.delegate.AppLifecycles;
-import com.jess.arms.di.module.GlobalConfigModule;
-import com.jess.arms.http.RequestInterceptor;
-import com.jess.arms.integration.ConfigModule;
-import com.jess.arms.utils.ArmsUtils;
+import <%= appPackage %>.base.delegate.AppLifecycles;
+import <%= appPackage %>.di.module.GlobalConfigModule;
+import <%= appPackage %>.http.RequestInterceptor;
+import <%= appPackage %>.integration.ConfigModule;
+import <%= appPackage %>.utils.ArmsUtils;
 import com.squareup.leakcanary.RefWatcher;
 
 import java.util.List;

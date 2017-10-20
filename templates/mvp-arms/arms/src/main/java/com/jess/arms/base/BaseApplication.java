@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jess.arms.base;
+package <%= appPackage %>.base;
 
 import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.jess.arms.base.delegate.AppDelegate;
-import com.jess.arms.base.delegate.AppLifecycles;
-import com.jess.arms.di.component.AppComponent;
-import com.jess.arms.utils.Preconditions;
+import <%= appPackage %>.base.delegate.AppDelegate;
+import <%= appPackage %>.base.delegate.AppLifecycles;
+import <%= appPackage %>.di.component.AppComponent;
+import <%= appPackage %>.utils.Preconditions;
 
 /**
  * ================================================

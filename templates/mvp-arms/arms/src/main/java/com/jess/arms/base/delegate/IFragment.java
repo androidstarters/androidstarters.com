@@ -13,7 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.base.delegate;
+package <%= appPackage %>.base.delegate;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,8 +21,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.jess.arms.base.BaseFragment;
-import com.jess.arms.di.component.AppComponent;
+import <%= appPackage %>.base.BaseFragment;
+import <%= appPackage %>.di.component.AppComponent;
 
 import org.simple.eventbus.EventBus;
 

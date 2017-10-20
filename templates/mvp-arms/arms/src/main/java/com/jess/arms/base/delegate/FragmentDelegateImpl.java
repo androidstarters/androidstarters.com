@@ -13,7 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.base.delegate;
+package <%= appPackage %>.base.delegate;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 
-import com.jess.arms.utils.ArmsUtils;
+import <%= appPackage %>.utils.ArmsUtils;
 
 import org.simple.eventbus.EventBus;
 

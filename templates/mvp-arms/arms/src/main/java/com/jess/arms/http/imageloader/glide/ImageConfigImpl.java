@@ -13,12 +13,12 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.http.imageloader.glide;
+package <%= appPackage %>.http.imageloader.glide;
 
 import android.widget.ImageView;
 
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
-import com.jess.arms.http.imageloader.ImageConfig;
+import <%= appPackage %>.http.imageloader.ImageConfig;
 
 /**
  * ================================================

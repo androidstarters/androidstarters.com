@@ -13,7 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.base;
+package <%= appPackage %>.base;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

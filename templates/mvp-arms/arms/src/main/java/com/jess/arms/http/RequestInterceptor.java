@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jess.arms.http;
+package <%= appPackage %>.http;
 
 import android.support.annotation.Nullable;
 
-import com.jess.arms.di.module.GlobalConfigModule;
-import com.jess.arms.utils.CharacterHandler;
-import com.jess.arms.utils.ZipHelper;
+import <%= appPackage %>.di.module.GlobalConfigModule;
+import <%= appPackage %>.utils.CharacterHandler;
+import <%= appPackage %>.utils.ZipHelper;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

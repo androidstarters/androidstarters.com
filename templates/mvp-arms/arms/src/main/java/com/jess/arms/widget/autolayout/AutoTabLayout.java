@@ -13,7 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.widget.autolayout;
+package <%= appPackage %>.widget.autolayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -24,7 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.jess.arms.R;
+import <%= appPackage %>.R;
 import com.zhy.autolayout.utils.AutoUtils;
 import com.zhy.autolayout.utils.DimenUtils;
 

@@ -13,21 +13,21 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.di.component;
+package <%= appPackage %>.di.component;
 
 import android.app.Application;
 import android.content.Context;
 
 import com.google.gson.Gson;
-import com.jess.arms.base.delegate.AppDelegate;
-import com.jess.arms.di.module.AppModule;
-import com.jess.arms.di.module.ClientModule;
-import com.jess.arms.di.module.GlobalConfigModule;
-import com.jess.arms.http.imageloader.ImageLoader;
-import com.jess.arms.integration.AppManager;
-import com.jess.arms.integration.IRepositoryManager;
-import com.jess.arms.integration.cache.Cache;
-import com.jess.arms.utils.ArmsUtils;
+import <%= appPackage %>.base.delegate.AppDelegate;
+import <%= appPackage %>.di.module.AppModule;
+import <%= appPackage %>.di.module.ClientModule;
+import <%= appPackage %>.di.module.GlobalConfigModule;
+import <%= appPackage %>.http.imageloader.ImageLoader;
+import <%= appPackage %>.integration.AppManager;
+import <%= appPackage %>.integration.IRepositoryManager;
+import <%= appPackage %>.integration.cache.Cache;
+import <%= appPackage %>.utils.ArmsUtils;
 
 import java.io.File;
 

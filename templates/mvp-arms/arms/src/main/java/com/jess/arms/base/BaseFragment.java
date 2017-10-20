@@ -13,7 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.base;
+package <%= appPackage %>.base;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -23,9 +23,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.jess.arms.base.delegate.IFragment;
-import com.jess.arms.integration.lifecycle.FragmentLifecycleable;
-import com.jess.arms.mvp.IPresenter;
+import <%= appPackage %>.base.delegate.IFragment;
+import <%= appPackage %>.integration.lifecycle.FragmentLifecycleable;
+import <%= appPackage %>.mvp.IPresenter;
 import com.trello.rxlifecycle2.android.FragmentEvent;
 
 import javax.inject.Inject;

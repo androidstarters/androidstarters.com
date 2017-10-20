@@ -13,14 +13,14 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.integration;
+package <%= appPackage %>.integration;
 
 import android.app.Application;
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
 
-import com.jess.arms.base.delegate.AppLifecycles;
-import com.jess.arms.di.module.GlobalConfigModule;
+import <%= appPackage %>.base.delegate.AppLifecycles;
+import <%= appPackage %>.di.module.GlobalConfigModule;
 
 import java.util.List;
 

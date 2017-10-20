@@ -13,7 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.utils;
+package <%= appPackage %>.utils;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -31,9 +31,9 @@ import com.zhy.autolayout.AutoRelativeLayout;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-import static com.jess.arms.base.delegate.ActivityDelegate.LAYOUT_FRAMELAYOUT;
-import static com.jess.arms.base.delegate.ActivityDelegate.LAYOUT_LINEARLAYOUT;
-import static com.jess.arms.base.delegate.ActivityDelegate.LAYOUT_RELATIVELAYOUT;
+import static <%= appPackage %>.base.delegate.ActivityDelegate.LAYOUT_FRAMELAYOUT;
+import static <%= appPackage %>.base.delegate.ActivityDelegate.LAYOUT_LINEARLAYOUT;
+import static <%= appPackage %>.base.delegate.ActivityDelegate.LAYOUT_RELATIVELAYOUT;
 
 /**
  * ================================================

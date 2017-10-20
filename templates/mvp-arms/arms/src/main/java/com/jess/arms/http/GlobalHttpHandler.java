@@ -13,9 +13,9 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.http;
+package <%= appPackage %>.http;
 
-import com.jess.arms.di.module.GlobalConfigModule;
+import <%= appPackage %>.di.module.GlobalConfigModule;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;

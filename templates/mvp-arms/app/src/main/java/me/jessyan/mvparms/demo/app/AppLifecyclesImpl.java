@@ -18,8 +18,8 @@ package <%= appPackage %>.app;
 import android.app.Application;
 import android.content.Context;
 
-import com.jess.arms.base.delegate.AppLifecycles;
-import com.jess.arms.utils.ArmsUtils;
+import <%= appPackage %>.base.delegate.AppLifecycles;
+import <%= appPackage %>.utils.ArmsUtils;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 

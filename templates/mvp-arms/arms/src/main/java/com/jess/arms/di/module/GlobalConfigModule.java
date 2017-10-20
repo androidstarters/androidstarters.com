@@ -13,7 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.di.module;
+package <%= appPackage %>.di.module;
 
 import android.app.Application;
 import android.support.annotation.NonNull;
@@ -21,15 +21,15 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.bumptech.glide.Glide;
-import com.jess.arms.http.BaseUrl;
-import com.jess.arms.http.GlobalHttpHandler;
-import com.jess.arms.http.RequestInterceptor;
-import com.jess.arms.http.imageloader.BaseImageLoaderStrategy;
-import com.jess.arms.http.imageloader.glide.GlideImageLoaderStrategy;
-import com.jess.arms.integration.cache.Cache;
-import com.jess.arms.integration.cache.CacheType;
-import com.jess.arms.integration.cache.LruCache;
-import com.jess.arms.utils.DataHelper;
+import <%= appPackage %>.http.BaseUrl;
+import <%= appPackage %>.http.GlobalHttpHandler;
+import <%= appPackage %>.http.RequestInterceptor;
+import <%= appPackage %>.http.imageloader.BaseImageLoaderStrategy;
+import <%= appPackage %>.http.imageloader.glide.GlideImageLoaderStrategy;
+import <%= appPackage %>.integration.cache.Cache;
+import <%= appPackage %>.integration.cache.CacheType;
+import <%= appPackage %>.integration.cache.LruCache;
+import <%= appPackage %>.utils.DataHelper;
 
 import java.io.File;
 import java.util.ArrayList;

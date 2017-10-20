@@ -13,7 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.di.module;
+package <%= appPackage %>.di.module;
 
 import android.app.Application;
 import android.content.Context;
@@ -21,10 +21,10 @@ import android.support.annotation.Nullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.jess.arms.integration.IRepositoryManager;
-import com.jess.arms.integration.RepositoryManager;
-import com.jess.arms.integration.cache.Cache;
-import com.jess.arms.integration.cache.CacheType;
+import <%= appPackage %>.integration.IRepositoryManager;
+import <%= appPackage %>.integration.RepositoryManager;
+import <%= appPackage %>.integration.cache.Cache;
+import <%= appPackage %>.integration.cache.CacheType;
 
 import javax.inject.Singleton;
 

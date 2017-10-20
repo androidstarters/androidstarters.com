@@ -20,7 +20,7 @@ import android.net.ParseException;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonParseException;
-import com.jess.arms.utils.ArmsUtils;
+import <%= appPackage %>.utils.ArmsUtils;
 
 import org.json.JSONException;
 

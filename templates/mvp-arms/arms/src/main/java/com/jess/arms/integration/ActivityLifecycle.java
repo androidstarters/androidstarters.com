@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jess.arms.integration;
+package <%= appPackage %>.integration;
 
 import android.app.Activity;
 import android.app.Application;
@@ -21,12 +21,12 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
-import com.jess.arms.base.BaseFragment;
-import com.jess.arms.base.delegate.ActivityDelegate;
-import com.jess.arms.base.delegate.ActivityDelegateImpl;
-import com.jess.arms.base.delegate.FragmentDelegate;
-import com.jess.arms.base.delegate.IActivity;
-import com.jess.arms.integration.cache.Cache;
+import <%= appPackage %>.base.BaseFragment;
+import <%= appPackage %>.base.delegate.ActivityDelegate;
+import <%= appPackage %>.base.delegate.ActivityDelegateImpl;
+import <%= appPackage %>.base.delegate.FragmentDelegate;
+import <%= appPackage %>.base.delegate.IActivity;
+import <%= appPackage %>.integration.cache.Cache;
 
 import java.util.ArrayList;
 import java.util.List;

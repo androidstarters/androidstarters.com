@@ -13,7 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.widget.autolayout;
+package <%= appPackage %>.widget.autolayout;
 
 import android.content.Context;
 import android.support.design.widget.CollapsingToolbarLayout;

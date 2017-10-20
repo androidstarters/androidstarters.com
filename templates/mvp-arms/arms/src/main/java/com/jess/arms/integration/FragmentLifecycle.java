@@ -13,7 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.integration;
+package <%= appPackage %>.integration;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -21,9 +21,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 
-import com.jess.arms.base.delegate.FragmentDelegate;
-import com.jess.arms.base.delegate.FragmentDelegateImpl;
-import com.jess.arms.base.delegate.IFragment;
+import <%= appPackage %>.base.delegate.FragmentDelegate;
+import <%= appPackage %>.base.delegate.FragmentDelegateImpl;
+import <%= appPackage %>.base.delegate.IFragment;
 
 import timber.log.Timber;
 

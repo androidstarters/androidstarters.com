@@ -28,7 +28,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.di.scope;
+package <%= appPackage %>.di.scope;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

@@ -13,7 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.jess.arms.base;
+package <%= appPackage %>.base;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,9 +24,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.jess.arms.base.delegate.IActivity;
-import com.jess.arms.integration.lifecycle.ActivityLifecycleable;
-import com.jess.arms.mvp.IPresenter;
+import <%= appPackage %>.base.delegate.IActivity;
+import <%= appPackage %>.integration.lifecycle.ActivityLifecycleable;
+import <%= appPackage %>.mvp.IPresenter;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 
 import javax.inject.Inject;
@@ -36,7 +36,7 @@ import butterknife.Unbinder;
 import io.reactivex.subjects.BehaviorSubject;
 import io.reactivex.subjects.Subject;
 
-import static com.jess.arms.utils.ThirdViewUtil.convertAutoView;
+import static <%= appPackage %>.utils.ThirdViewUtil.convertAutoView;
 
 /**
  * ================================================
@@ -107,7 +107,7 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
 
     /**
      * 这个Activity是否会使用Fragment,框架会根据这个属性判断是否注册{@link android.support.v4.app.FragmentManager.FragmentLifecycleCallbacks}
-     * 如果返回false,那意味着这个Activity不需要绑定Fragment,那你再在这个Activity中绑定继承于 {@link com.jess.arms.base.BaseFragment} 的Fragment将不起任何作用
+     * 如果返回false,那意味着这个Activity不需要绑定Fragment,那你再在这个Activity中绑定继承于 {@link <%= appPackage %>.base.BaseFragment} 的Fragment将不起任何作用
      *
      * @return
      */
