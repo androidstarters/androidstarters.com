@@ -9,10 +9,11 @@ import <%= appPackage %>.di.scope.ViewModelScope;
 import <%= appPackage %>.weather.mvvm.viewmodel.WeatherDailyViewModel;
 
 /**
- * Created by xiaobailong24 on 2017/8/14.
+ * @author xiaobailong24
+ * @date 2017/8/14
  * MVVM WeatherDailyViewModelModule
  */
-@Module(includes = {WeatherDailyModule.class})
+@Module
 public abstract class WeatherDailyViewModelModule {
 
     @Binds

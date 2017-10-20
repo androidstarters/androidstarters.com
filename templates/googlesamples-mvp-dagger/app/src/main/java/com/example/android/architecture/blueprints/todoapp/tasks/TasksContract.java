@@ -18,9 +18,9 @@ package <%= appPackage %>.tasks;
 
 import android.support.annotation.NonNull;
 
+import <%= appPackage %>.BasePresenter;
 import <%= appPackage %>.BaseView;
 import <%= appPackage %>.data.Task;
-import <%= appPackage %>.BasePresenter;
 
 import java.util.List;
 
@@ -66,7 +66,7 @@ public interface TasksContract {
         void showFilteringPopUpMenu();
     }
 
-    interface Presenter extends BasePresenter {
+    interface Presenter extends BasePresenter<View> {
 
         void result(int requestCode, int resultCode);
 
@@ -82,8 +82,12 @@ public interface TasksContract {
 
         void clearCompletedTasks();
 
+        TasksFilterType getFiltering();
+
         void setFiltering(TasksFilterType requestType);
 
-        TasksFilterType getFiltering();
+        void takeView(TasksContract.View view);
+
+        void dropView();
     }
 }

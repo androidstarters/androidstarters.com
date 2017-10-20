@@ -18,9 +18,9 @@ package <%= appPackage %>.tasks;
 
 import android.support.annotation.NonNull;
 
+import <%= appPackage %>.BasePresenter;
 import <%= appPackage %>.BaseView;
 import <%= appPackage %>.data.Task;
-import <%= appPackage %>.BasePresenter;
 
 import java.util.List;
 

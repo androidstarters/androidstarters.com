@@ -18,11 +18,9 @@ package <%= appPackage %>.tasks;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.PopupMenu;
@@ -42,41 +40,58 @@ import android.widget.TextView;
 import <%= appPackage %>.R;
 import <%= appPackage %>.addedittask.AddEditTaskActivity;
 import <%= appPackage %>.data.Task;
+import <%= appPackage %>.di.ActivityScoped;
 import <%= appPackage %>.taskdetail.TaskDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
+
+import dagger.android.support.DaggerFragment;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Display a grid of {@link Task}s. User can choose to view all, active or completed tasks.
  */
-public class TasksFragment extends Fragment implements TasksContract.View {
+@ActivityScoped
+public class TasksFragment extends DaggerFragment implements TasksContract.View {
 
-    private TasksContract.Presenter mPresenter;
+    @Inject
+    TasksContract.Presenter mPresenter;
+    /**
+     * Listener for clicks on tasks in the ListView.
+     */
+    TaskItemListener mItemListener = new TaskItemListener() {
+        @Override
+        public void onTaskClick(Task clickedTask) {
+            mPresenter.openTaskDetails(clickedTask);
+        }
 
+        @Override
+        public void onCompleteTaskClick(Task completedTask) {
+            mPresenter.completeTask(completedTask);
+        }
+
+        @Override
+        public void onActivateTaskClick(Task activatedTask) {
+            mPresenter.activateTask(activatedTask);
+        }
+    };
     private TasksAdapter mListAdapter;
-
     private View mNoTasksView;
-
     private ImageView mNoTaskIcon;
-
     private TextView mNoTaskMainView;
-
     private TextView mNoTaskAddView;
-
     private LinearLayout mTasksView;
-
     private TextView mFilteringLabelView;
 
+    @Inject
     public TasksFragment() {
         // Requires empty public constructor
     }
 
-    public static TasksFragment newInstance() {
-        return new TasksFragment();
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,12 +102,14 @@ public class TasksFragment extends Fragment implements TasksContract.View {
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.start();
+        mPresenter.takeView(this);
     }
 
     @Override
-    public void setPresenter(@NonNull TasksContract.Presenter presenter) {
-        mPresenter = checkNotNull(presenter);
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.dropView();  //prevent leaking activity in
+        // case presenter is orchestrating a long running task
     }
 
     @Override
@@ -107,16 +124,16 @@ public class TasksFragment extends Fragment implements TasksContract.View {
         View root = inflater.inflate(R.layout.tasks_frag, container, false);
 
         // Set up tasks view
-        ListView listView = (ListView) root.findViewById(R.id.tasks_list);
+        ListView listView = root.findViewById(R.id.tasks_list);
         listView.setAdapter(mListAdapter);
-        mFilteringLabelView = (TextView) root.findViewById(R.id.filteringLabel);
-        mTasksView = (LinearLayout) root.findViewById(R.id.tasksLL);
+        mFilteringLabelView = root.findViewById(R.id.filteringLabel);
+        mTasksView = root.findViewById(R.id.tasksLL);
 
         // Set up  no tasks view
         mNoTasksView = root.findViewById(R.id.noTasks);
-        mNoTaskIcon = (ImageView) root.findViewById(R.id.noTasksIcon);
-        mNoTaskMainView = (TextView) root.findViewById(R.id.noTasksMain);
-        mNoTaskAddView = (TextView) root.findViewById(R.id.noTasksAdd);
+        mNoTaskIcon = root.findViewById(R.id.noTasksIcon);
+        mNoTaskMainView = root.findViewById(R.id.noTasksMain);
+        mNoTaskAddView = root.findViewById(R.id.noTasksAdd);
         mNoTaskAddView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,8 +142,7 @@ public class TasksFragment extends Fragment implements TasksContract.View {
         });
 
         // Set up floating action button
-        FloatingActionButton fab =
-                (FloatingActionButton) getActivity().findViewById(R.id.fab_add_task);
+        FloatingActionButton fab = getActivity().findViewById(R.id.fab_add_task);
 
         fab.setImageResource(R.drawable.ic_add);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -138,7 +154,7 @@ public class TasksFragment extends Fragment implements TasksContract.View {
 
         // Set up progress indicator
         final ScrollChildSwipeRefreshLayout swipeRefreshLayout =
-                (ScrollChildSwipeRefreshLayout) root.findViewById(R.id.refresh_layout);
+                root.findViewById(R.id.refresh_layout);
         swipeRefreshLayout.setColorSchemeColors(
                 ContextCompat.getColor(getActivity(), R.color.colorPrimary),
                 ContextCompat.getColor(getActivity(), R.color.colorAccent),
@@ -206,34 +222,13 @@ public class TasksFragment extends Fragment implements TasksContract.View {
         popup.show();
     }
 
-    /**
-     * Listener for clicks on tasks in the ListView.
-     */
-    TaskItemListener mItemListener = new TaskItemListener() {
-        @Override
-        public void onTaskClick(Task clickedTask) {
-            mPresenter.openTaskDetails(clickedTask);
-        }
-
-        @Override
-        public void onCompleteTaskClick(Task completedTask) {
-            mPresenter.completeTask(completedTask);
-        }
-
-        @Override
-        public void onActivateTaskClick(Task activatedTask) {
-            mPresenter.activateTask(activatedTask);
-        }
-    };
-
     @Override
     public void setLoadingIndicator(final boolean active) {
 
         if (getView() == null) {
             return;
         }
-        final SwipeRefreshLayout srl =
-                (SwipeRefreshLayout) getView().findViewById(R.id.refresh_layout);
+        final SwipeRefreshLayout srl = getView().findViewById(R.id.refresh_layout);
 
         // Make sure setRefreshing() is called after the layout is done with everything else.
         srl.post(new Runnable() {
@@ -289,6 +284,7 @@ public class TasksFragment extends Fragment implements TasksContract.View {
         mNoTasksView.setVisibility(View.VISIBLE);
 
         mNoTaskMainView.setText(mainText);
+        //noinspection deprecation
         mNoTaskIcon.setImageDrawable(getResources().getDrawable(iconRes));
         mNoTaskAddView.setVisibility(showAddView ? View.VISIBLE : View.GONE);
     }
@@ -316,8 +312,8 @@ public class TasksFragment extends Fragment implements TasksContract.View {
 
     @Override
     public void showTaskDetailsUi(String taskId) {
-        // in it's own Activity, since it makes more sense that way and it gives us the flexibility
-        // to show some Intent stubbing.
+        //Shown in it's own Activity, since it makes more sense that way
+        // and it gives us the flexibility to show some Intent stubbing.
         Intent intent = new Intent(getContext(), TaskDetailActivity.class);
         intent.putExtra(TaskDetailActivity.EXTRA_TASK_ID, taskId);
         startActivity(intent);
@@ -350,6 +346,15 @@ public class TasksFragment extends Fragment implements TasksContract.View {
     @Override
     public boolean isActive() {
         return isAdded();
+    }
+
+    public interface TaskItemListener {
+
+        void onTaskClick(Task clickedTask);
+
+        void onCompleteTaskClick(Task completedTask);
+
+        void onActivateTaskClick(Task activatedTask);
     }
 
     private static class TasksAdapter extends BaseAdapter {
@@ -396,17 +401,19 @@ public class TasksFragment extends Fragment implements TasksContract.View {
 
             final Task task = getItem(i);
 
-            TextView titleTV = (TextView) rowView.findViewById(R.id.title);
+            TextView titleTV = rowView.findViewById(R.id.title);
             titleTV.setText(task.getTitleForList());
 
-            CheckBox completeCB = (CheckBox) rowView.findViewById(R.id.complete);
+            CheckBox completeCB = rowView.findViewById(R.id.complete);
 
             // Active/completed task UI
             completeCB.setChecked(task.isCompleted());
             if (task.isCompleted()) {
+                //noinspection deprecation (api <16)
                 rowView.setBackgroundDrawable(viewGroup.getContext()
                         .getResources().getDrawable(R.drawable.list_completed_touch_feedback));
             } else {
+                //noinspection deprecation (api <16)
                 rowView.setBackgroundDrawable(viewGroup.getContext()
                         .getResources().getDrawable(R.drawable.touch_feedback));
             }
@@ -431,15 +438,6 @@ public class TasksFragment extends Fragment implements TasksContract.View {
 
             return rowView;
         }
-    }
-
-    public interface TaskItemListener {
-
-        void onTaskClick(Task clickedTask);
-
-        void onCompleteTaskClick(Task completedTask);
-
-        void onActivateTaskClick(Task activatedTask);
     }
 
 }

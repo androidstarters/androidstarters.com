@@ -1,45 +1,39 @@
 package <%= appPackage %>;
 
 import android.app.Application;
+import android.support.annotation.VisibleForTesting;
 
-import <%= appPackage %>.addedittask.AddEditTaskComponent;
-import <%= appPackage %>.data.source.DaggerTasksRepositoryComponent;
-import <%= appPackage %>.data.source.TasksRepositoryComponent;
-import <%= appPackage %>.statistics.StatisticsComponent;
-import <%= appPackage %>.taskdetail.TaskDetailComponent;
-import <%= appPackage %>.tasks.TasksComponent;
+import <%= appPackage %>.data.source.TasksRepository;
+import <%= appPackage %>.di.AppComponent;
+import <%= appPackage %>.di.DaggerAppComponent;
+
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjector;
+import dagger.android.DaggerApplication;
 
 /**
- * Even though Dagger2 allows annotating a {@link dagger.Component} as a singleton, the code itself
- * must ensure only one instance of the class is created. Therefore, we create a custom
- * {@link Application} class to store a singleton reference to the {@link
- * TasksRepositoryComponent}.
- * <P>
- * The application is made of 5 Dagger components, as follows:<BR />
- * {@link TasksRepositoryComponent}: the data (it encapsulates a db and server data)<BR />
- * {@link TasksComponent}: showing the list of to do items, including marking them as
- * completed<BR />
- * {@link AddEditTaskComponent}: adding or editing a to do item<BR />
- * {@link TaskDetailComponent}: viewing details about a to do item, inlcuding marking it as
- * completed and deleting it<BR />
- * {@link StatisticsComponent}: viewing statistics about your to do items<BR />
+ * We create a custom {@link Application} class that extends  {@link DaggerApplication}.
+ * We then override applicationInjector() which tells Dagger how to make our @Singleton Component
+ * We never have to call `component.inject(this)` as {@link DaggerApplication} will do that for us.
  */
-public class ToDoApplication extends Application {
-
-    private TasksRepositoryComponent mRepositoryComponent;
+public class ToDoApplication extends DaggerApplication {
+    @Inject
+    TasksRepository tasksRepository;
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-
-        mRepositoryComponent = DaggerTasksRepositoryComponent.builder()
-                .applicationModule(new ApplicationModule((getApplicationContext())))
-                .build();
-
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        AppComponent appComponent = DaggerAppComponent.builder().application(this).build();
+        appComponent.inject(this);
+        return appComponent;
     }
 
-    public TasksRepositoryComponent getTasksRepositoryComponent() {
-        return mRepositoryComponent;
+    /**
+     * Our Espresso tests need to be able to get an instance of the {@link TasksRepository}
+     * so that we can delete all tasks before running each test
+     */
+    @VisibleForTesting
+    public TasksRepository getTasksRepository() {
+        return tasksRepository;
     }
-
 }

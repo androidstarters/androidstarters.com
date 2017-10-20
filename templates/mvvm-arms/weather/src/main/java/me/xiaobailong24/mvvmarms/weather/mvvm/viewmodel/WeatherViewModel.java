@@ -16,7 +16,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
-import <%= appPackage %>.di.scope.AppScope;
+import <%= appPackage %>.di.scope.ActivityScope;
 import <%= appPackage %>.mvvm.BaseViewModel;
 import <%= appPackage %>.repository.utils.RepositoryUtils;
 import <%= appPackage %>.weather.mvvm.model.WeatherModel;
@@ -24,13 +24,16 @@ import <%= appPackage %>.weather.mvvm.model.entry.Location;
 import timber.log.Timber;
 
 /**
- * Created by xiaobailong24 on 2017/7/31.
+ *
+ * @author xiaobailong24
+ * @date 2017/7/31
  * MVVM WeatherViewModel
  */
-@AppScope
+@ActivityScope
 public class WeatherViewModel extends BaseViewModel<WeatherModel> {
     private MutableLiveData<List<String>> mLocationPaths;
-    private MutableLiveData<String> mLocation;//可以与 Fragment 共享此数据
+    //可以与 Fragment 共享此数据
+    private MutableLiveData<String> mLocation;
 
     @Inject
     public WeatherViewModel(Application application, WeatherModel model) {
@@ -39,8 +42,9 @@ public class WeatherViewModel extends BaseViewModel<WeatherModel> {
 
     //获取储存的位置记录
     public LiveData<List<String>> getHistoryLocations() {
-        if (mLocationPaths == null)
+        if (mLocationPaths == null) {
             mLocationPaths = new MutableLiveData<>();
+        }
         loadLocationPaths();
         return mLocationPaths;
     }

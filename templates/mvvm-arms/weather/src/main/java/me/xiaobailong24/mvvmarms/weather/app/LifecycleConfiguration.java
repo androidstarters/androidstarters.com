@@ -15,7 +15,8 @@ import <%= appPackage %>.lifecycle.delegate.AppLifecycles;
 import <%= appPackage %>.repository.utils.RepositoryUtils;
 
 /**
- * Created by xiaobailong24 on 2017/7/24.
+ * @author xiaobailong24
+ * @date 2017/7/24
  * Lifecycle 的全局配置信息在此配置,需要将此实现类声明到 AndroidManifest 中
  */
 public class LifecycleConfiguration implements ConfigLifecycle {

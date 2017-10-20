@@ -1,31 +1,34 @@
 package <%= appPackage %>.taskdetail;
 
+import <%= appPackage %>.di.ActivityScoped;
+import <%= appPackage %>.di.FragmentScoped;
+
+import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
+import dagger.android.ContributesAndroidInjector;
+
+import static <%= appPackage %>.taskdetail.TaskDetailActivity.EXTRA_TASK_ID;
 
 /**
  * This is a Dagger module. We use this to pass in the View dependency to the
  * {@link TaskDetailPresenter}.
  */
 @Module
-public class TaskDetailPresenterModule {
+public abstract class TaskDetailPresenterModule {
 
-    private final TaskDetailContract.View mView;
 
-    private final String mTaskId;
+    @FragmentScoped
+    @ContributesAndroidInjector
+    abstract TaskDetailFragment taskDetailFragment();
 
-    public TaskDetailPresenterModule(TaskDetailContract.View view, String taskId) {
-        mView = view;
-        mTaskId = taskId;
-    }
-
-    @Provides
-    TaskDetailContract.View provideTaskDetailContractView() {
-        return mView;
-    }
+    @ActivityScoped
+    @Binds
+    abstract TaskDetailContract.Presenter statitsticsPresenter(TaskDetailPresenter presenter);
 
     @Provides
-    String provideTaskId() {
-        return mTaskId;
+    @ActivityScoped
+    static String provideTaskId(TaskDetailActivity activity) {
+        return activity.getIntent().getStringExtra(EXTRA_TASK_ID);
     }
 }

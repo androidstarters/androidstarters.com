@@ -17,6 +17,7 @@
 package <%= appPackage %>.addedittask;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.ActionBar;
@@ -39,31 +40,29 @@ public class AddEditTaskActivity extends AppCompatActivity {
 
     private AddEditTaskPresenter mAddEditTaskPresenter;
 
+    private ActionBar mActionBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addtask_act);
 
         // Set up the toolbar.
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
+        mActionBar = getSupportActionBar();
+        mActionBar.setDisplayHomeAsUpEnabled(true);
+        mActionBar.setDisplayShowHomeEnabled(true);
 
         AddEditTaskFragment addEditTaskFragment =
                 (AddEditTaskFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
 
         String taskId = getIntent().getStringExtra(AddEditTaskFragment.ARGUMENT_EDIT_TASK_ID);
 
+        setToolbarTitle(taskId);
+
         if (addEditTaskFragment == null) {
             addEditTaskFragment = AddEditTaskFragment.newInstance();
-
-            if (getIntent().hasExtra(AddEditTaskFragment.ARGUMENT_EDIT_TASK_ID)) {
-                actionBar.setTitle(R.string.edit_task);
-            } else {
-                actionBar.setTitle(R.string.add_task);
-            }
 
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
                     addEditTaskFragment, R.id.contentFrame);
@@ -84,6 +83,14 @@ public class AddEditTaskActivity extends AppCompatActivity {
                 addEditTaskFragment,
                 shouldLoadDataFromRepo,
                 Injection.provideSchedulerProvider());
+    }
+
+    private void setToolbarTitle(@Nullable String taskId) {
+        if(taskId == null) {
+            mActionBar.setTitle(R.string.add_task);
+        } else {
+            mActionBar.setTitle(R.string.edit_task);
+        }
     }
 
     @Override

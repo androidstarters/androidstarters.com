@@ -16,6 +16,7 @@
 
 package <%= appPackage %>.util;
 
+
 import android.support.test.espresso.IdlingResource;
 
 /**

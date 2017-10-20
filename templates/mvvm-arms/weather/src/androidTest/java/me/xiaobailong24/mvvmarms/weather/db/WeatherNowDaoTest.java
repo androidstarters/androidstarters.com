@@ -12,7 +12,8 @@ import <%= appPackage %>.weather.mvvm.model.entry.Location;
 import <%= appPackage %>.weather.util.TestUtil;
 
 /**
- * Created by xiaobailong24 on 2017/7/30.
+ * @author xiaobailong24
+ * @date 2017/7/30
  * Room Database Test
  * {@link <%= appPackage %>.weather.mvvm.model.db.WeatherNowDao}
  */

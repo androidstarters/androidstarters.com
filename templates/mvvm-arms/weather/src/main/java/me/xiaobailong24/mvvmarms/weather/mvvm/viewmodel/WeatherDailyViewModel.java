@@ -15,7 +15,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
-import <%= appPackage %>.di.scope.AppScope;
+import <%= appPackage %>.di.scope.FragmentScope;
 import <%= appPackage %>.mvvm.BaseViewModel;
 import <%= appPackage %>.repository.http.Status;
 import <%= appPackage %>.repository.utils.RepositoryUtils;
@@ -24,10 +24,11 @@ import <%= appPackage %>.weather.mvvm.model.api.Api;
 import <%= appPackage %>.weather.mvvm.model.entry.WeatherDailyResponse;
 
 /**
- * Created by xiaobailong24 on 2017/8/14.
+ * @author xiaobailong24
+ * @date 2017/8/14
  * MVVM WeatherDailyViewModel
  */
-@AppScope
+@FragmentScope
 public class WeatherDailyViewModel extends BaseViewModel<WeatherDailyModel> {
     private MutableLiveData<List<WeatherDailyResponse.DailyResult.Daily>> mDailyData;
     private MutableLiveData<String> mLocationName;
@@ -39,14 +40,16 @@ public class WeatherDailyViewModel extends BaseViewModel<WeatherDailyModel> {
 
     @SuppressWarnings("all")
     public LiveData<List<WeatherDailyResponse.DailyResult.Daily>> getWeatherDaily(String locationName) {
-        if (mDailyData == null)
+        if (mDailyData == null) {
             mDailyData = new MutableLiveData<>();
+        }
 
         if (mLocationName == null) {
             mLocationName = new MutableLiveData<>();
         }
-        if (mLocationName.getValue() == null)
+        if (mLocationName.getValue() == null) {
             mLocationName.setValue("");
+        }
 
         if (!mLocationName.getValue().equalsIgnoreCase(locationName)) {
             mLocationName.setValue(locationName);
@@ -71,8 +74,9 @@ public class WeatherDailyViewModel extends BaseViewModel<WeatherDailyModel> {
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(Schedulers.io())
                 .doOnNext(weatherDailyResponse -> {
-                    if (weatherDailyResponse.getResults().size() > 1)
+                    if (weatherDailyResponse.getResults().size() > 1) {
                         throw new RuntimeException("WeatherDailyResponse get MORE than one DailyResult");
+                    }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(weatherDailyResponse -> weatherDailyResponse.getResults().get(0).getDaily())
@@ -101,8 +105,9 @@ public class WeatherDailyViewModel extends BaseViewModel<WeatherDailyModel> {
 
     @Override
     public void retry() {
-        if (mLocationName != null && mLocationName.getValue() != null)
+        if (mLocationName != null && mLocationName.getValue() != null) {
             loadWeatherDaily(mLocationName.getValue());
+        }
     }
 
     @Override

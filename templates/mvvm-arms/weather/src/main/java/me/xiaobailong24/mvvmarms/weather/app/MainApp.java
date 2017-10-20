@@ -1,14 +1,16 @@
 package <%= appPackage %>.weather.app;
 
-import <%= appPackage %>.base.ArmsApplication;
+import <%= appPackage %>.base.BaseApplication;
 import <%= appPackage %>.weather.di.component.AppComponent;
 import <%= appPackage %>.weather.di.component.DaggerAppComponent;
 
 /**
- * Created by xiaobailong24 on 2017/7/13.
+ * @author xiaobailong24
+ * @date 2017/7/13
+ * MainApp 配置框架
+ * {@link BaseApplication}
  */
-
-public class MainApp extends ArmsApplication {
+public class MainApp extends BaseApplication {
 
     private AppComponent mAppComponent;
 

@@ -30,13 +30,17 @@ android {
             testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
         }
     }
+    flavorDimensions "default"
 
     // If you need to add more flavors, consider using flavor dimensions.
     productFlavors {
         mock {
+            dimension "default"
             applicationIdSuffix = ".mock"
         }
-        prod
+        prod {
+            dimension "default"
+        }
     }
 
     // Remove mockRelease as it's not needed.
@@ -80,7 +84,7 @@ dependencies {
 
     // Android Testing Support Library's runner and rules
     androidTestCompile "com.android.support.test:runner:$rootProject.ext.runnerVersion"
-    androidTestCompile "com.android.support.test:rules:$rootProject.ext.runnerVersion"
+    androidTestCompile "com.android.support.test:rules:$rootProject.ext.rulesVersion"
 
     // Dependencies for Android unit tests
     androidTestCompile "junit:junit:$rootProject.ext.junitVersion"

@@ -13,7 +13,7 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import java.util.ArrayList;
 import java.util.List;
 
-import <%= appPackage %>.base.ArmsActivity;
+import <%= appPackage %>.base.BaseActivity;
 import <%= appPackage %>.weather.R;
 import <%= appPackage %>.weather.app.EventBusTags;
 import <%= appPackage %>.weather.app.utils.KeyboardUtils;
@@ -24,7 +24,12 @@ import <%= appPackage %>.weather.mvvm.view.fragment.WeatherNowFragment;
 import <%= appPackage %>.weather.mvvm.viewmodel.WeatherViewModel;
 import timber.log.Timber;
 
-public class WeatherActivity extends ArmsActivity<ActivityWeatherBinding, WeatherViewModel> {
+/**
+ * @author xiaobailong24
+ * @date 2017/8/14
+ */
+public class WeatherActivity extends BaseActivity<ActivityWeatherBinding, WeatherViewModel> {
+    private final String comma = ",";
 
     private int mReplace = 0;
     private List<Fragment> mFragments;
@@ -50,10 +55,12 @@ public class WeatherActivity extends ArmsActivity<ActivityWeatherBinding, Weathe
     }
 
     private void initViewPager() {
-        if (mFragments == null)
+        if (mFragments == null) {
             mFragments = new ArrayList<>();
-        if (mFragmentTitles == null)
+        }
+        if (mFragmentTitles == null) {
             mFragmentTitles = new ArrayList<>();
+        }
 
         //ViewPager findFragmentByTag，tag= "android:switcher:" + R.id.viewpager + position
         WeatherNowFragment weatherNowFragment = (WeatherNowFragment) getSupportFragmentManager()
@@ -93,14 +100,12 @@ public class WeatherActivity extends ArmsActivity<ActivityWeatherBinding, Weathe
         });
     }
 
-    @SuppressWarnings("all")
     private void initToolbar() {
         //Init Toolbar
         mViewModel.getLocation().observe(this, s ->
                 getSupportActionBar().setTitle(s));
-        mBinding.searchToolbar.setOnClickListener(view -> {
-            mBinding.searchView.showSearch();
-        });
+        mBinding.searchToolbar.setOnClickListener(view ->
+                mBinding.searchView.showSearch());
         //Init SearchView,自动取消订阅
         mViewModel.getHistoryLocations().observe(this, locations -> {
             if (locations.size() > 0) {
@@ -111,10 +116,13 @@ public class WeatherActivity extends ArmsActivity<ActivityWeatherBinding, Weathe
                     doSearch(query);
                 });
                 String location = locations.get(0);
-                if (location.contains(",")) //如果位置是全路径，则截取城市名
+                //如果位置是全路径，则截取城市名
+                if (location.contains(comma)) {
                     location = location.substring(0, location.indexOf(","));
-                if (TextUtils.equals(mViewModel.getLocation().getValue(), "北京"))
+                }
+                if (TextUtils.equals(mViewModel.getLocation().getValue(), getString(R.string.location_beijing))) {
                     mViewModel.getLocation().setValue(location);
+                }
             }
         });
         mBinding.searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
@@ -132,10 +140,16 @@ public class WeatherActivity extends ArmsActivity<ActivityWeatherBinding, Weathe
     }
 
 
-    //处理搜索事件
+    /**
+     * 处理搜索事件
+     *
+     * @param location 位置名称
+     */
     private void doSearch(String location) {
-        if (location.contains(",")) //如果位置是全路径，则截取城市名
+        //如果位置是全路径，则截取城市名
+        if (location.contains(comma)) {
             location = location.substring(0, location.indexOf(","));
+        }
         mViewModel.getLocation().setValue(location);
         mBinding.searchView.closeSearch();
         KeyboardUtils.hideSoftInput(WeatherActivity.this, mBinding.searchView);

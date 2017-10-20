@@ -2,6 +2,91 @@ var each = require('async-each');
 const yeomanSync = require('yeoman-sync');
 
 let configs = [{
+  destination: 'googlesamples-mvp',
+  rename: [{
+    dest: 'gitignore',
+    src: 'todoapp/.gitignore'
+  }, {
+    dest: 'app/gitignore',
+    src: 'todoapp/app/.gitignore'
+  }],
+  replace: [{
+    regex: 'com.example.android.architecture.blueprints.todoapp',
+    replacement: '<%= appPackage %>'
+  }],
+  repo: {
+    branchName: 'todo-mvp',
+    url: 'https://github.com/googlesamples/android-architecture'
+  }
+}, {
+  destination: 'googlesamples-mvp-dagger',
+  rename: [{
+    dest: 'gitignore',
+    src: 'todoapp/.gitignore'
+  }, {
+    dest: 'app/gitignore',
+    src: 'todoapp/app/.gitignore'
+  }],
+  replace: [{
+    regex: 'com.example.android.architecture.blueprints.todoapp',
+    replacement: '<%= appPackage %>'
+  }],
+  repo: {
+    branchName: 'todo-mvp-dagger',
+    url: 'https://github.com/googlesamples/android-architecture'
+  }
+}, {
+  destination: 'googlesamples-mvp-clean',
+  rename: [{
+    dest: 'gitignore',
+    src: 'todoapp/.gitignore'
+  }, {
+    dest: 'app/gitignore',
+    src: 'todoapp/app/.gitignore'
+  }],
+  replace: [{
+    regex: 'com.example.android.architecture.blueprints.todoapp',
+    replacement: '<%= appPackage %>'
+  }],
+  repo: {
+    branchName: 'todo-mvp-clean',
+    url: 'https://github.com/googlesamples/android-architecture'
+  }
+}, {
+  destination: 'googlesamples-mvp-rxjava',
+  rename: [{
+    dest: 'gitignore',
+    src: 'todoapp/.gitignore'
+  }, {
+    dest: 'app/gitignore',
+    src: 'todoapp/app/.gitignore'
+  }],
+  replace: [{
+    regex: 'com.example.android.architecture.blueprints.todoapp',
+    replacement: '<%= appPackage %>'
+  }],
+  repo: {
+    branchName: 'todo-mvp-rxjava',
+    url: 'https://github.com/googlesamples/android-architecture'
+  }
+}, {
+  destination: 'googlesamples-mvvm-databinding',
+  rename: [{
+    dest: 'gitignore',
+    src: 'todoapp/.gitignore'
+  }, {
+    dest: 'app/gitignore',
+    src: 'todoapp/app/.gitignore'
+  }],
+  replace: [{
+    regex: 'com.example.android.architecture.blueprints.todoapp',
+    replacement: '<%= appPackage %>'
+  }],
+  repo: {
+    branchName: 'todo-mvvm-databinding',
+    url: 'https://github.com/googlesamples/android-architecture'
+  }
+}, {
   destination: 'androidstarters-java',
   rename: [{
     dest: 'gitignore',

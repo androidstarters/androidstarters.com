@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import javax.inject.Inject;
 
-import <%= appPackage %>.base.ArmsFragment;
+import <%= appPackage %>.base.BaseFragment;
 import <%= appPackage %>.weather.R;
 import <%= appPackage %>.weather.databinding.FragmentWeatherNowBinding;
 import <%= appPackage %>.weather.mvvm.model.api.Api;
@@ -19,15 +19,18 @@ import <%= appPackage %>.weather.mvvm.viewmodel.WeatherNowViewModel;
 import <%= appPackage %>.weather.mvvm.viewmodel.WeatherViewModel;
 
 /**
- * Created by xiaobailong24 on 2017/7/15.
+ * @author xiaobailong24
+ * @date 2017/7/15
  * MVVM WeatherNowFragment
  */
+public class WeatherNowFragment extends BaseFragment<FragmentWeatherNowBinding, WeatherNowViewModel> {
 
-public class WeatherNowFragment extends ArmsFragment<FragmentWeatherNowBinding, WeatherNowViewModel> {
-
-    private TextContentAdapter mAdapter;
     @Inject
-    WeatherViewModel mWeatherViewModel;//共享 Activity 数据
+    TextContentAdapter mAdapter;
+    /**
+     * 共享 Activity 数据
+     */
+    WeatherViewModel mWeatherViewModel;
 
     public static WeatherNowFragment newInstance(String location) {
         WeatherNowFragment weatherNowFragment = new WeatherNowFragment();
@@ -39,11 +42,13 @@ public class WeatherNowFragment extends ArmsFragment<FragmentWeatherNowBinding, 
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        //获取 Activity 的ViewModel 来共享数据
+        mWeatherViewModel = ViewModelProviders.of(getActivity(), mViewModelFactory).get(WeatherViewModel.class);
         mViewModel = ViewModelProviders.of(this, mViewModelFactory).get(WeatherNowViewModel.class);
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_weather_now, container, false);
-        mBinding.setViewModel(mViewModel);//设置ViewModel
+        //设置ViewModel
+        mBinding.setViewModel(mViewModel);
         //RecyclerView设置Adapter
-        mAdapter = new TextContentAdapter(R.layout.super_text_item, null);
         mBinding.recyclerWeatherNow.setAdapter(mAdapter);
         //设置Refresh
         mBinding.refresh.setColorSchemeColors(
@@ -57,9 +62,11 @@ public class WeatherNowFragment extends ArmsFragment<FragmentWeatherNowBinding, 
     public void initData(Bundle savedInstanceState) {
         //懒加载：onFragmentVisibleChange().
         mWeatherViewModel.getLocation().observe(getActivity(), s -> {
-            mFirst = true;//位置变化时，需要重新加载
-            if (mVisible)
+            //位置变化时，需要重新加载
+            mFirst = true;
+            if (mVisible) {
                 onFragmentVisibleChange(true);
+            }
         });
     }
 
@@ -75,7 +82,6 @@ public class WeatherNowFragment extends ArmsFragment<FragmentWeatherNowBinding, 
          */
     }
 
-    @SuppressWarnings("all")
     @Override
     protected void onFragmentVisibleChange(boolean isVisible) {
         //当 Fragment 显示/隐藏变化时执行该方法，根据是否显示 Fragment 加载数据
@@ -85,7 +91,8 @@ public class WeatherNowFragment extends ArmsFragment<FragmentWeatherNowBinding, 
             mViewModel.getWeatherNow(mWeatherViewModel.getLocation().getValue())
                     .observe(WeatherNowFragment.this, dailies -> {
                         mAdapter.replaceData(dailies);
-                        mFirst = false;//加载完成
+                        //加载完成
+                        mFirst = false;
                         // TODO: 2017/8/19
                         //            DiffUtil.DiffResult diffResult = DiffUtil
                         //                    .calculateDiff(new RecyclerViewDiffCallback<>(mAdapter.getData(), dailies));
@@ -98,5 +105,6 @@ public class WeatherNowFragment extends ArmsFragment<FragmentWeatherNowBinding, 
     public void onDestroy() {
         super.onDestroy();
         this.mAdapter = null;
+        this.mWeatherViewModel = null;
     }
 }

@@ -1,6 +1,6 @@
 package <%= appPackage %>.data.source;
 
-import android.content.Context;
+import android.app.Application;
 
 import <%= appPackage %>.data.source.local.TasksLocalDataSource;
 import <%= appPackage %>.data.source.remote.TasksRemoteDataSource;
@@ -19,7 +19,7 @@ public class TasksRepositoryModule {
     @Singleton
     @Provides
     @Local
-    TasksDataSource provideTasksLocalDataSource(Context context) {
+    TasksDataSource provideTasksLocalDataSource(Application context) {
         return new TasksLocalDataSource(context);
     }
 

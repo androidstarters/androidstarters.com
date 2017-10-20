@@ -6,7 +6,8 @@ import <%= appPackage %>.di.scope.FragmentScope;
 import <%= appPackage %>.weather.mvvm.view.fragment.WeatherNowFragment;
 
 /**
- * Created by xiaobailong24 on 2017/7/15.
+ * @author xiaobailong24
+ * @date 2017/7/15
  * Dagger WeatherNowFragmentModule
  * 用于 Dagger.Android 依赖注入
  */
@@ -20,6 +21,8 @@ public abstract class WeatherNowFragmentModule {
      * 第一种{@link WeatherActivityModule}
      */
     @FragmentScope
-    @ContributesAndroidInjector(modules = WeatherNowModule.class)//DataModule
+    @ContributesAndroidInjector(
+            //DataModule
+            modules = {WeatherNowModule.class, WeatherNowViewModelModule.class})
     abstract WeatherNowFragment contributeWeatherNowFragment();
 }

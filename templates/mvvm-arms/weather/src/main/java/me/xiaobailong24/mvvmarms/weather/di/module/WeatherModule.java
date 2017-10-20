@@ -7,7 +7,8 @@ import <%= appPackage %>.mvvm.IModel;
 import <%= appPackage %>.weather.mvvm.model.WeatherModel;
 
 /**
- * Created by xiaobailong24 on 2017/7/31.
+ * @author xiaobailong24
+ * @date 2017/7/31
  * Dagger WeatherModule
  */
 @Module

@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-package <%= appPackage %>.data;
+package <%= appPackage %>.data.source.local;
 
 import android.support.test.InstrumentationRegistry;
+import android.support.test.filters.LargeTest;
 import android.support.test.runner.AndroidJUnit4;
-import android.test.suitebuilder.annotation.LargeTest;
 
+import <%= appPackage %>.data.Task;
 import <%= appPackage %>.data.source.TasksDataSource;
-import <%= appPackage %>.data.source.local.TasksDbHelper;
-import <%= appPackage %>.data.source.local.TasksLocalDataSource;
 
 import org.junit.After;
 import org.junit.Before;
@@ -58,8 +57,8 @@ public class TasksLocalDataSourceTest {
 
     @Before
     public void setup() {
-         mLocalDataSource = TasksLocalDataSource.getInstance(
-                 InstrumentationRegistry.getTargetContext());
+        mLocalDataSource = TasksLocalDataSource.getInstance(
+                InstrumentationRegistry.getTargetContext());
     }
 
     @After
@@ -213,7 +212,7 @@ public class TasksLocalDataSourceTest {
 
                 boolean newTask1IdFound = false;
                 boolean newTask2IdFound = false;
-                for (Task task: tasks) {
+                for (Task task : tasks) {
                     if (task.getId().equals(newTask1.getId())) {
                         newTask1IdFound = true;
                     }

@@ -9,11 +9,12 @@ import <%= appPackage %>.di.scope.ViewModelScope;
 import <%= appPackage %>.weather.mvvm.viewmodel.WeatherNowViewModel;
 
 /**
- * Created by xiaobailong24 on 2017/6/16.
+ * @author xiaobailong24
+ * @date 2017/6/16
  * Dagger WeatherNowViewModelModule
  * 包含ViewModelFactoryModule提供ViewModelProvider.Factory
  */
-@Module(includes = {WeatherNowModule.class})
+@Module
 public abstract class WeatherNowViewModelModule {
 
     @Binds

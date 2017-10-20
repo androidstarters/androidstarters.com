@@ -14,7 +14,8 @@ import <%= appPackage %>.lifecycle.delegate.ActivityLifecycle;
 import <%= appPackage %>.lifecycle.delegate.AppManager;
 
 /**
- * Created by xiaobailong24 on 2017/9/30.
+ * @author xiaobailong24
+ * @date 2017/9/30
  * Dagger LifecycleModule
  */
 @Module(includes = AndroidInjectionModule.class)

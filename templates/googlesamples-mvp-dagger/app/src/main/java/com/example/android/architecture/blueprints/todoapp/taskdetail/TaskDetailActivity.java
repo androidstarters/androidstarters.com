@@ -17,27 +17,23 @@
 package <%= appPackage %>.taskdetail;
 
 import android.os.Bundle;
-import android.support.annotation.VisibleForTesting;
-import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import <%= appPackage %>.R;
-import <%= appPackage %>.ToDoApplication;
 import <%= appPackage %>.util.ActivityUtils;
-import <%= appPackage %>.util.EspressoIdlingResource;
 
 import javax.inject.Inject;
+
+import dagger.android.support.DaggerAppCompatActivity;
 
 /**
  * Displays task details screen.
  */
-public class TaskDetailActivity extends AppCompatActivity {
-
+public class TaskDetailActivity extends DaggerAppCompatActivity {
     public static final String EXTRA_TASK_ID = "TASK_ID";
-
-    @Inject TaskDetailPresenter mTaskDetailPresenter;
+    @Inject
+    TaskDetailFragment injectedFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,31 +42,20 @@ public class TaskDetailActivity extends AppCompatActivity {
         setContentView(R.layout.taskdetail_act);
 
         // Set up the toolbar.
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setDisplayShowHomeEnabled(true);
 
-        // Get the requested task id
-        String taskId = getIntent().getStringExtra(EXTRA_TASK_ID);
-
         TaskDetailFragment taskDetailFragment = (TaskDetailFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.contentFrame);
 
         if (taskDetailFragment == null) {
-            taskDetailFragment = TaskDetailFragment.newInstance(taskId);
-
+            taskDetailFragment = injectedFragment;
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
                     taskDetailFragment, R.id.contentFrame);
         }
-
-        // Create the presenter
-        DaggerTaskDetailComponent.builder()
-                .taskDetailPresenterModule(new TaskDetailPresenterModule(taskDetailFragment, taskId))
-                .tasksRepositoryComponent(((ToDoApplication) getApplication())
-                .getTasksRepositoryComponent()).build()
-                .inject(this);
     }
 
     @Override

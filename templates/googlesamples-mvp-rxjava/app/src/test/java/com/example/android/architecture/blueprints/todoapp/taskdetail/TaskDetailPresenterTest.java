@@ -20,13 +20,14 @@ import <%= appPackage %>.data.Task;
 import <%= appPackage %>.data.source.TasksRepository;
 import <%= appPackage %>.util.schedulers.BaseSchedulerProvider;
 import <%= appPackage %>.util.schedulers.ImmediateSchedulerProvider;
+import com.google.common.base.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import rx.Observable;
+import io.reactivex.Flowable;
 
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.never;
@@ -204,7 +205,7 @@ public class TaskDetailPresenterTest {
     }
 
     private void setTaskAvailable(Task task) {
-        when(mTasksRepository.getTask(eq(task.getId()))).thenReturn(Observable.just(task));
+        when(mTasksRepository.getTask(eq(task.getId()))).thenReturn(Flowable.just(Optional.of(task)));
     }
 
 }

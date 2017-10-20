@@ -20,12 +20,13 @@ import <%= appPackage %>.repository.cache.LruCache;
 import <%= appPackage %>.repository.http.BaseUrl;
 import <%= appPackage %>.repository.http.GlobalHttpHandler;
 import <%= appPackage %>.repository.utils.DataHelper;
-import <%= appPackage %>.repository.utils.RequestInterceptor;
+import <%= appPackage %>.repository.http.RequestInterceptor;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 
 /**
- * Created by xiaobailong24 on 2017/9/28.
+ * @author xiaobailong24
+ * @date 2017/9/28
  * RepositoryConfigModule
  */
 @Module
@@ -42,7 +43,7 @@ public class RepositoryConfigModule {
     private ClientModule.GsonConfiguration mGsonConfiguration;
     private ClientModule.RxCacheConfiguration mRxCacheConfiguration;
     private RequestInterceptor.Level mPrintHttpLogLevel;
-    private DBModule.RoomConfiguration mRoomConfiguration;
+    private DatabaseModule.RoomConfiguration mRoomConfiguration;
     private Cache.Factory mCacheFactory;
 
 
@@ -146,8 +147,8 @@ public class RepositoryConfigModule {
 
     @Singleton
     @Provides
-    DBModule.RoomConfiguration provideRoomConfiguration() {
-        return mRoomConfiguration == null ? DBModule.RoomConfiguration.EMPTY : mRoomConfiguration;
+    DatabaseModule.RoomConfiguration provideRoomConfiguration() {
+        return mRoomConfiguration == null ? DatabaseModule.RoomConfiguration.EMPTY : mRoomConfiguration;
     }
 
     @Singleton
@@ -184,7 +185,7 @@ public class RepositoryConfigModule {
         private ClientModule.GsonConfiguration gsonConfiguration;
         private ClientModule.RxCacheConfiguration rxCacheConfiguration;
         private RequestInterceptor.Level printHttpLogLevel;
-        private DBModule.RoomConfiguration roomConfiguration;
+        private DatabaseModule.RoomConfiguration roomConfiguration;
         private Cache.Factory cacheFactory;
 
 
@@ -262,7 +263,7 @@ public class RepositoryConfigModule {
             return this;
         }
 
-        public Builder roomConfiguration(DBModule.RoomConfiguration roomConfiguration) {
+        public Builder roomConfiguration(DatabaseModule.RoomConfiguration roomConfiguration) {
             this.roomConfiguration = roomConfiguration;
             return this;
         }
