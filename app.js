@@ -11,6 +11,7 @@ const path = require('path');
 const androidstarters = require('androidstarters');
 const merge = require('lodash.merge');
 const rimraf = require('rimraf');
+const Mixpanel = require('mixpanel');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -22,7 +23,7 @@ dotenv.load({
 /**
  * Controllers (route handlers).
  */
-
+const mixpanel = Mixpanel.init(process.env.MIXPANEL_API_KEY);
 /**
  * Create Express server.
  */
@@ -67,7 +68,9 @@ app.post('/download', (req, res) => {
 		}
 	};
 
-	if ( config.templateName.length === 0 ) config.templatename = 'androidstarters-java';
+	mixpanel.track('Download', config);
+
+	if (config.templateName.length === 0) config.templatename = 'androidstarters-java';
 
 	const templateConfig = require('./config/' + config.templateName + '.json');
 

@@ -38,6 +38,7 @@
     "extract-text-webpack-plugin": "3.0.0",
     "html-webpack-plugin": "2.29.0",
     "lodash.merge": "^4.6.0",
+    "mixpanel": "^0.7.0",
     "modularscale-sass": "3.0.3",
     "mongoose": "^4.6.6",
     "mongoose-data-seed": "^1.0.2",
