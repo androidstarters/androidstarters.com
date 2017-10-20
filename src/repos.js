@@ -77,13 +77,13 @@ export var architectures = [{
     desc: 'This repository contains a detailed sample app that implements MVVM architecture using Dagger2, Room, RxJava2, FastAndroidNetworking and PlaceholderView',
     gh: 'https://github.com/MindorksOpenSource/android-mvvm-architecture'
 }, {
-    name: 'MVPArms',
+    name: 'MVPArms [WIP]',
     templateName: 'mvp-arms',
     license: 'Apache 2',
     desc: 'A common architecture for Android applications developing based on MVP,integrates many open source projects( like Dagger2,Rxjava,Retrofit... ),to make your developing quicker and easier.',
     gh: 'https://github.com/JessYanCoding/MVPArms.git'
 }, {
-    name: 'MVVMArms',
+    name: 'MVVMArms [WIP]',
     templateName: 'mvvm-arms',
     license: 'Apache 2',
     desc: 'Android MVVM Architecture Components based on MVPArms and Android Architecture Components.',
