@@ -17,6 +17,7 @@ import <%= appPackage %>.mvvm.IViewModel;
  * @author xiaobailong24
  * @date 2017/6/16
  * MVVM BaseActivity
+ * 如果只使用 DataBinding, 则 VM 的泛型可以传 {@link <%= appPackage %>.mvvm.BaseViewModel}
  */
 public abstract class BaseActivity<DB extends ViewDataBinding, VM extends IViewModel>
         extends AppCompatActivity implements IActivity {
@@ -57,6 +58,11 @@ public abstract class BaseActivity<DB extends ViewDataBinding, VM extends IViewM
 
     @Override
     public boolean useFragment() {
+        return true;
+    }
+
+    @Override
+    public boolean injectable() {
         return true;
     }
 

@@ -19,6 +19,7 @@ import <%= appPackage %>.mvvm.IViewModel;
  * @author xiaobailong24
  * @date 2017/6/16
  * MVVM BaseFragment
+ * 如果只使用 DataBinding, 则 VM 的泛型可以传 {@link <%= appPackage %>.mvvm.BaseViewModel}
  */
 public abstract class BaseFragment<DB extends ViewDataBinding, VM extends IViewModel>
         extends Fragment implements IFragment {
