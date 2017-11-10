@@ -16,8 +16,6 @@
 
 package <%= appPackage %>;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import android.content.Context;
 import android.support.annotation.NonNull;
 
@@ -27,6 +25,7 @@ import <%= appPackage %>.addedittask.domain.usecase.SaveTask;
 import <%= appPackage %>.data.source.TasksDataSource;
 import <%= appPackage %>.data.source.TasksRepository;
 import <%= appPackage %>.data.source.local.TasksLocalDataSource;
+import <%= appPackage %>.data.source.local.ToDoDatabase;
 import <%= appPackage %>.data.source.remote.TasksRemoteDataSource;
 import <%= appPackage %>.statistics.domain.usecase.GetStatistics;
 import <%= appPackage %>.tasks.domain.filter.FilterFactory;
@@ -34,6 +33,9 @@ import <%= appPackage %>.tasks.domain.usecase.ActivateTask;
 import <%= appPackage %>.tasks.domain.usecase.ClearCompleteTasks;
 import <%= appPackage %>.tasks.domain.usecase.CompleteTask;
 import <%= appPackage %>.tasks.domain.usecase.GetTasks;
+import <%= appPackage %>.util.AppExecutors;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Enables injection of production implementations for
@@ -43,8 +45,10 @@ public class Injection {
 
     public static TasksRepository provideTasksRepository(@NonNull Context context) {
         checkNotNull(context);
+        ToDoDatabase database = ToDoDatabase.getInstance(context);
         return TasksRepository.getInstance(TasksRemoteDataSource.getInstance(),
-                TasksLocalDataSource.getInstance(context));
+                TasksLocalDataSource.getInstance(new AppExecutors(),
+                        database.taskDao()));
     }
 
     public static GetTasks provideGetTasks(@NonNull Context context) {
