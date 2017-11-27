@@ -55,10 +55,10 @@
     "validator": "^8.0.0",
     "vue": "2.4.2",
     "webpack": "^3.4.1",
-    "webpack-bundle-analyzer": "2.8.3",
-    "yeoman-sync": "git+https://github.com/ravidsrk/yeoman-sync.git"
+    "webpack-bundle-analyzer": "2.8.3"
   },
   "devDependencies": {
+    "yeoman-sync": "git+https://github.com/ravidsrk/yeoman-sync.git",
     "chai": "^4.1.0",
     "eslint": "^4.3.0",
     "eslint-config-airbnb-base": "^11.1.3",
