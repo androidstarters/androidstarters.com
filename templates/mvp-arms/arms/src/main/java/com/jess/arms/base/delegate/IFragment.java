@@ -16,6 +16,7 @@
 package <%= appPackage %>.base.delegate;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,8 @@ import android.view.ViewGroup;
 
 import <%= appPackage %>.base.BaseFragment;
 import <%= appPackage %>.di.component.AppComponent;
+import <%= appPackage %>.integration.cache.Cache;
+import <%= appPackage %>.integration.cache.LruCache;
 
 import org.simple.eventbus.EventBus;
 
@@ -37,6 +40,15 @@ import org.simple.eventbus.EventBus;
  * ================================================
  */
 public interface IFragment {
+
+    /**
+     * 提供在 {@link Fragment} 生命周期内的缓存容器, 可向此 {@link Fragment} 存取一些必要的数据
+     *
+     * @return like {@link LruCache}
+     */
+    @NonNull
+    Cache<String, Object> provideCache();
+
     /**
      * 提供 AppComponent(提供所有的单例对象)给实现类,进行 Component 依赖
      *

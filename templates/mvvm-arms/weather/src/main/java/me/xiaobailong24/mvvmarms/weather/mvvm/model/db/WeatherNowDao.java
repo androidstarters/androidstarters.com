@@ -3,17 +3,20 @@ package <%= appPackage %>.weather.mvvm.model.db;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import <%= appPackage %>.weather.mvvm.model.entry.Location;
 
 /**
  * @author xiaobailong24
  * @date 2017/7/29
  * Room Database DAO
+ * @see <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/0726/8268.html">在Room中使用RxJava</a>
  */
 @Dao
 public interface WeatherNowDao {
@@ -24,7 +27,7 @@ public interface WeatherNowDao {
      *
      * @param locations 地址信息
      */
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(Location... locations);
 
     /**
@@ -33,7 +36,7 @@ public interface WeatherNowDao {
      * @return 所有地址列表
      */
     @Query("SELECT * FROM location")
-    List<Location> getAll();
+    Flowable<List<Location>> getAll();
 
     /**
      * 查询指定地址
@@ -42,7 +45,7 @@ public interface WeatherNowDao {
      * @return 地址信息
      */
     @Query("SELECT * FROM location WHERE name = :name")
-    Location getLocationByName(String name);
+    Flowable<List<Location>> getLocationByName(String name);
 
     /**
      * 更新地址信息

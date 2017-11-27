@@ -3,24 +3,39 @@ apply from: "config.gradle"
 buildscript {
     repositories {
         jcenter()
-//        google()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0'
+        classpath 'com.android.tools.build:gradle:3.0.1'
+
+        //Gradle Android Maven plugin
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+        //Gradle Bintray Plugin
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+        google()
         maven { url "https://jitpack.io" }
         maven { url "https://dl.google.com/dl/android/maven2" }
+        maven { url "https://dl.bintray.com/xiaobailong24/maven" }
 //        maven { url "https://maven.google.com" }
     }
     //https://github.com/google/dagger/issues/306
     afterEvaluate {
         tasks.withType(JavaCompile.class) {
             options.compilerArgs << "-Xmaxerrs" << "500"
+        }
+    }
+
+    tasks.withType(Javadoc) {
+        options {
+            encoding "UTF-8"
+            charSet 'UTF-8'
+            links "http://docs.oracle.com/javase/7/docs/api"
         }
     }
 }

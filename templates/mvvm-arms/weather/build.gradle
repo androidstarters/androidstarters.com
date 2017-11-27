@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    useLibrary 'org.apache.http.legacy'
 
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
@@ -49,6 +50,10 @@ android {
     dataBinding {
         enabled true
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -56,6 +61,8 @@ dependencies {
 
     //arms
     implementation project(':arms')
+    //JCenter
+//    implementation rootProject.ext.dependencies["arms"]
 
     //view
     implementation rootProject.ext.dependencies["constraint-layout"]
@@ -73,14 +80,12 @@ dependencies {
     }
 
     //tools
-    provided rootProject.ext.dependencies["javax.annotation"]
     annotationProcessor(rootProject.ext.dependencies["dagger2-compiler"]) {
         exclude module: 'js305'
     }
     annotationProcessor(rootProject.ext.dependencies["dagger2-android-processor"]) {
         exclude module: 'jsr305'
     }
-    implementation rootProject.ext.dependencies["multidex"]
 
     //test
     testImplementation rootProject.ext.dependencies["junit"]

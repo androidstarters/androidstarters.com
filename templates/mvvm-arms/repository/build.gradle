@@ -3,7 +3,6 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
-    useLibrary 'org.apache.http.legacy'
 
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
@@ -24,11 +23,27 @@ android {
             }
         }
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    //DataBinding
+    dataBinding {
+        enabled true
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+buildscript {
+    repositories {
+        jcenter()
     }
 }
 
@@ -42,7 +57,7 @@ dependencies {
         exclude module: 'support-core-utils'
         exclude module: 'gson'
     }
-    api (rootProject.ext.dependencies["room-rxjava2"]) {
+    api(rootProject.ext.dependencies["room-rxjava2"]) {
         exclude module: 'rxjava'
     }
 
@@ -83,22 +98,16 @@ dependencies {
     }
 
     //tools
-    compileOnly rootProject.ext.dependencies["javax.annotation"]
-    api rootProject.ext.dependencies["dagger2"]
+    implementation rootProject.ext.dependencies["dagger2"]
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
-
     api rootProject.ext.dependencies["gson"]
-    api(rootProject.ext.dependencies["glide"]) {
-        exclude module: 'support-v4'
-    }
-    annotationProcessor(rootProject.ext.dependencies["glide-compiler"]) {
-        exclude module: 'jsr305'
-    }
 
     //test
-    api rootProject.ext.dependencies["timber"]
+    implementation rootProject.ext.dependencies["timber"]
     testApi rootProject.ext.dependencies["junit"]
     androidTestApi(rootProject.ext.dependencies["espresso-core"]) {
         exclude module: 'support-annotations'
     }
 }
+
+//apply from: 'bintray.gradle'

@@ -25,8 +25,11 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import <%= appPackage %>.base.delegate.IActivity;
+import <%= appPackage %>.integration.cache.Cache;
+import <%= appPackage %>.integration.cache.CacheType;
 import <%= appPackage %>.integration.lifecycle.ActivityLifecycleable;
 import <%= appPackage %>.mvp.IPresenter;
+import <%= appPackage %>.utils.ArmsUtils;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 
 import javax.inject.Inject;
@@ -50,11 +53,20 @@ import static <%= appPackage %>.utils.ThirdViewUtil.convertAutoView;
  */
 public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivity implements IActivity, ActivityLifecycleable {
     protected final String TAG = this.getClass().getSimpleName();
-    private Unbinder mUnbinder;
     private final BehaviorSubject<ActivityEvent> mLifecycleSubject = BehaviorSubject.create();
+    private Cache<String, Object> mCache;
+    private Unbinder mUnbinder;
     @Inject
     protected P mPresenter;
 
+    @NonNull
+    @Override
+    public Cache<String, Object> provideCache() {
+        if (mCache == null){
+            mCache = ArmsUtils.obtainAppComponentFromContext(this).cacheFactory().build(CacheType.ACTIVITY_CACHE);
+        }
+        return mCache;
+    }
 
     @NonNull
     @Override

@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <import type="<%= appPackage %>.repository.http.Status"/>
+
+        <variable
+            name="retry"
+            type="<%= appPackage %>.repository.http.IRetry"/>
 
         <variable
             name="viewModel"
@@ -11,17 +17,15 @@
     </data>
 
     <TextView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/sub_retry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:drawableTop="@mipmap/ic_refresh"
         android:gravity="center"
-        android:onClick="@{() -> viewModel.retry()}"
+        android:onClick="@{() -> retry.retry()}"
         android:text="@string/error_tap_to_retry"
         android:textColor="@color/colorSecondary"
-        app:visibleGone="@{viewModel.mStatus == Status.ERROR}"/>
+        app:visibleGone="@{viewModel.STATUS == Status.ERROR}"/>
 
 </layout>

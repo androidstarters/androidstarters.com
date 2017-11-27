@@ -9,8 +9,6 @@ import android.databinding.ObservableField;
 
 import org.simple.eventbus.EventBus;
 
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 import <%= appPackage %>.repository.http.Status;
 
 /**
@@ -25,14 +23,13 @@ import <%= appPackage %>.repository.http.Status;
  */
 public class BaseViewModel<M extends IModel> extends AndroidViewModel
         implements IViewModel, LifecycleObserver {
-    protected CompositeDisposable mCompositeDisposable;
 
     protected M mModel;
 
     /**
      * 数据请求状态
      */
-    public final ObservableField<Status> mStatus = new ObservableField<>();
+    public final ObservableField<Status> STATUS = new ObservableField<>();
 
     public BaseViewModel(Application application) {
         super(application);
@@ -61,27 +58,6 @@ public class BaseViewModel<M extends IModel> extends AndroidViewModel
         return true;
     }
 
-    /**
-     * RxJava 添加订阅
-     */
-    protected void addDispose(Disposable disposable) {
-        if (mCompositeDisposable == null) {
-            mCompositeDisposable = new CompositeDisposable();
-        }
-        //将所有disposable放入,集中处理
-        mCompositeDisposable.add(disposable);
-    }
-
-    /**
-     * RxJava自动解除订阅，也可以手动调用
-     */
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    protected void unDispose() {
-        if (mCompositeDisposable != null) {
-            //保证LifecycleOwner结束时取消所有正在执行的订阅
-            mCompositeDisposable.clear();
-        }
-    }
 
     @Override
     protected void onCleared() {
@@ -91,13 +67,6 @@ public class BaseViewModel<M extends IModel> extends AndroidViewModel
             EventBus.getDefault().unregister(this);
         }
         // TODO: 2017/8/2
-    }
-
-    /**
-     * 用于封装刷新操作
-     */
-    public void retry() {
-        //如果子类的业务有刷新逻辑，可以重写此方法
     }
 
 }
