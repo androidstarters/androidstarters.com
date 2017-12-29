@@ -28,7 +28,6 @@ import <%= appPackage %>.di.component.DaggerAppComponent;
 import <%= appPackage %>.di.module.AppModule;
 import <%= appPackage %>.di.module.ClientModule;
 import <%= appPackage %>.di.module.GlobalConfigModule;
-import <%= appPackage %>.http.imageloader.glide.ImageConfigImpl;
 import <%= appPackage %>.integration.ActivityLifecycle;
 import <%= appPackage %>.integration.ConfigModule;
 import <%= appPackage %>.integration.ManifestParser;
@@ -199,11 +198,7 @@ public class AppDelegate implements App, AppLifecycles {
 
         @Override
         public void onLowMemory() {
-            //内存不足时清理图片请求框架的内存缓存
-            mAppComponent.imageLoader().clear(mApplication, ImageConfigImpl
-                    .builder()
-                    .isClearMemory(true)
-                    .build());
+            //内存不足时清理不必要的资源
         }
     }
 

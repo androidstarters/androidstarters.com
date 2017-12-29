@@ -8,7 +8,7 @@ import <%= appPackage %>.features.main.MainActivity
 import dagger.Subcomponent
 
 @PerActivity
-@Subcomponent(modules = arrayOf(ActivityModule::class))
+@Subcomponent(modules = [ActivityModule::class])
 interface ActivityComponent {
     fun inject(baseActivity: BaseActivity)
 

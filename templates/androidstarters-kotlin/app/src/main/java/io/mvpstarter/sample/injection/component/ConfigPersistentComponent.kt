@@ -15,7 +15,7 @@ import <%= appPackage %>.injection.module.FragmentModule
  * configuration changes (for example Presenters).
  */
 @ConfigPersistent
-@Component(dependencies = arrayOf(AppComponent::class))
+@Component(dependencies = [AppComponent::class])
 interface ConfigPersistentComponent {
 
     fun activityComponent(activityModule: ActivityModule): ActivityComponent
