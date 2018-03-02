@@ -29,21 +29,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * Created by shivam on 8/7/17.
- */
-
-fun ImageView.loadImageFromUrl(url: String) {
-    Glide.with(context)
-            .load(url)
-            .into(this)
-}
-
-fun Activity.hideKeyboard() {
-    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    imm.hideSoftInputFromWindow(window.decorView.windowToken, 0)
-}
-
-/**
  * Extension method to remove the required boilerplate for running code after a view has been
  * inflated and measured.
  *
