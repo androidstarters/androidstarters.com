@@ -1,12 +1,12 @@
-/**
+/*
  * Copyright 2017 JessYan
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,6 +22,7 @@ import android.support.annotation.NonNull;
 import <%= appPackage %>.base.delegate.AppDelegate;
 import <%= appPackage %>.base.delegate.AppLifecycles;
 import <%= appPackage %>.di.component.AppComponent;
+import <%= appPackage %>.utils.ArmsUtils;
 import <%= appPackage %>.utils.Preconditions;
 
 /**
@@ -69,10 +70,10 @@ public class BaseApplication extends Application implements App {
     }
 
     /**
-     * 将 {@link AppComponent} 返回出去,供其它地方使用,{@link AppComponent} 中声明的方法所返回的实例
-     * 在 {@link #getAppComponent()}拿到对象后都可以直接使用
+     * 将 {@link AppComponent} 返回出去, 供其它地方使用, {@link AppComponent} 接口中声明的方法所返回的实例, 在 {@link #getAppComponent()} 拿到对象后都可以直接使用
      *
-     * @return
+     * @see ArmsUtils#obtainAppComponentFromContext(Context) 可直接获取 {@link AppComponent}
+     * @return AppComponent
      */
     @NonNull
     @Override

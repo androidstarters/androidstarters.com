@@ -1,12 +1,12 @@
-/**
+/*
  * Copyright 2017 JessYan
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,20 +43,19 @@ import retrofit2.Retrofit;
  */
 @Singleton
 public class RepositoryManager implements IRepositoryManager {
-    private Lazy<Retrofit> mRetrofit;
-    private Lazy<RxCache> mRxCache;
-    private Application mApplication;
+    @Inject
+    Lazy<Retrofit> mRetrofit;
+    @Inject
+    Lazy<RxCache> mRxCache;
+    @Inject
+    Application mApplication;
+    @Inject
+    Cache.Factory mCachefactory;
     private Cache<String, Object> mRetrofitServiceCache;
     private Cache<String, Object> mCacheServiceCache;
-    private Cache.Factory mCachefactory;
 
     @Inject
-    public RepositoryManager(Lazy<Retrofit> retrofit, Lazy<RxCache> rxCache, Application application
-            , Cache.Factory cachefactory) {
-        this.mRetrofit = retrofit;
-        this.mRxCache = rxCache;
-        this.mApplication = application;
-        this.mCachefactory = cachefactory;
+    public RepositoryManager() {
     }
 
     /**
@@ -67,17 +66,14 @@ public class RepositoryManager implements IRepositoryManager {
      * @return
      */
     @Override
-    public <T> T obtainRetrofitService(Class<T> service) {
+    public synchronized <T> T obtainRetrofitService(Class<T> service) {
         if (mRetrofitServiceCache == null)
             mRetrofitServiceCache = mCachefactory.build(CacheType.RETROFIT_SERVICE_CACHE);
-        Preconditions.checkNotNull(mRetrofitServiceCache,"Cannot return null from a Cache.Factory#build(int) method");
-        T retrofitService;
-        synchronized (mRetrofitServiceCache) {
-            retrofitService = (T) mRetrofitServiceCache.get(service.getCanonicalName());
-            if (retrofitService == null) {
-                retrofitService = mRetrofit.get().create(service);
-                mRetrofitServiceCache.put(service.getCanonicalName(), retrofitService);
-            }
+        Preconditions.checkNotNull(mRetrofitServiceCache, "Cannot return null from a Cache.Factory#build(int) method");
+        T retrofitService = (T) mRetrofitServiceCache.get(service.getCanonicalName());
+        if (retrofitService == null) {
+            retrofitService = mRetrofit.get().create(service);
+            mRetrofitServiceCache.put(service.getCanonicalName(), retrofitService);
         }
         return retrofitService;
     }
@@ -90,17 +86,14 @@ public class RepositoryManager implements IRepositoryManager {
      * @return
      */
     @Override
-    public <T> T obtainCacheService(Class<T> cache) {
+    public synchronized <T> T obtainCacheService(Class<T> cache) {
         if (mCacheServiceCache == null)
             mCacheServiceCache = mCachefactory.build(CacheType.CACHE_SERVICE_CACHE);
-        Preconditions.checkNotNull(mCacheServiceCache,"Cannot return null from a Cache.Factory#build(int) method");
-        T cacheService;
-        synchronized (mCacheServiceCache) {
-            cacheService = (T) mCacheServiceCache.get(cache.getCanonicalName());
-            if (cacheService == null) {
-                cacheService = mRxCache.get().using(cache);
-                mCacheServiceCache.put(cache.getCanonicalName(), cacheService);
-            }
+        Preconditions.checkNotNull(mCacheServiceCache, "Cannot return null from a Cache.Factory#build(int) method");
+        T cacheService = (T) mCacheServiceCache.get(cache.getCanonicalName());
+        if (cacheService == null) {
+            cacheService = mRxCache.get().using(cache);
+            mCacheServiceCache.put(cache.getCanonicalName(), cacheService);
         }
         return cacheService;
     }

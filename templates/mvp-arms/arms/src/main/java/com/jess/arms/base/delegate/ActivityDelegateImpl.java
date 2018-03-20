@@ -1,22 +1,23 @@
-/**
-  * Copyright 2017 JessYan
-  *
-  * Licensed under the Apache License, Version 2.0 (the "License");
-  * you may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at
-  *
-  *      http://www.apache.org/licenses/LICENSE-2.0
-  *
-  * Unless required by applicable law or agreed to in writing, software
-  * distributed under the License is distributed on an "AS IS" BASIS,
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  */
+/*
+ * Copyright 2017 JessYan
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package <%= appPackage %>.base.delegate;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import <%= appPackage %>.utils.ArmsUtils;
 
@@ -40,11 +41,17 @@ public class ActivityDelegateImpl implements ActivityDelegate {
         this.iActivity = (IActivity) activity;
     }
 
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        if (iActivity.useEventBus())//如果要使用eventbus请将此方法返回true
-            EventBus.getDefault().register(mActivity);//注册到事件主线
-        iActivity.setupActivityComponent(ArmsUtils.obtainAppComponentFromContext(mActivity));//依赖注入
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        //如果要使用 EventBus 请将此方法返回 true
+        if (iActivity.useEventBus()){
+            //注册到事件主线
+            EventBus.getDefault().register(mActivity);
+        }
+
+        //这里提供 AppComponent 对象给 BaseActivity 的子类, 用于 Dagger2 的依赖注入
+        iActivity.setupActivityComponent(ArmsUtils.obtainAppComponentFromContext(mActivity));
     }
 
     @Override
@@ -74,7 +81,8 @@ public class ActivityDelegateImpl implements ActivityDelegate {
 
     @Override
     public void onDestroy() {
-        if (iActivity != null && iActivity.useEventBus())//如果要使用eventbus请将此方法返回true
+        //如果要使用 EventBus 请将此方法返回 true
+        if (iActivity != null && iActivity.useEventBus())
             EventBus.getDefault().unregister(mActivity);
         this.iActivity = null;
         this.mActivity = null;
