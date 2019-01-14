@@ -7,14 +7,20 @@ import dagger.android.support.AndroidSupportInjectionModule
 import <%= appPackage %>.domain.executor.PostExecutionThread
 import <%= appPackage %>.domain.repository.BufferooRepository
 import <%= appPackage %>.ui.injection.ApplicationComponent
-import <%= appPackage %>.ui.injection.module.ActivityBindingModule
-import <%= appPackage %>.ui.injection.module.TestApplicationModule
+import <%= appPackage %>.ui.injection.module.*
 import <%= appPackage %>.ui.injection.scopes.PerApplication
 import <%= appPackage %>.ui.test.TestApplication
+import javax.inject.Singleton
 
-@Component(modules = arrayOf(TestApplicationModule::class, ActivityBindingModule::class,
-        AndroidSupportInjectionModule::class))
-@PerApplication
+@Singleton
+@Component(modules = arrayOf(
+        TestApplicationModule::class,
+        AndroidSupportInjectionModule::class,
+        TestCacheModule::class,
+        TestRemoteModule::class,
+        TestDataModule::class,
+        PresentationModule::class,
+        UiModule::class))
 interface TestApplicationComponent : ApplicationComponent {
 
     fun bufferooRepository(): BufferooRepository

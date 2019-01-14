@@ -5,13 +5,13 @@ import <%= appPackage %>.common.TestDataFactory
 import <%= appPackage %>.data.model.Pokemon
 import <%= appPackage %>.features.detail.DetailActivity
 import <%= appPackage %>.util.ErrorTestUtil
-import android.support.test.InstrumentationRegistry
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
-import android.support.test.espresso.matcher.ViewMatchers.withText
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.InstrumentationRegistry
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.rule.ActivityTestRule
+import androidx.test.runner.AndroidJUnit4
 import io.reactivex.Single
 import org.junit.Rule
 import org.junit.Test

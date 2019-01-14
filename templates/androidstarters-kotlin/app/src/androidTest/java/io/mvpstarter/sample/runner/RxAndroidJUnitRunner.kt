@@ -3,7 +3,7 @@ package <%= appPackage %>.runner
 import <%= appPackage %>.util.RxIdlingExecutionHook
 import <%= appPackage %>.util.RxIdlingResource
 import android.os.Bundle
-import android.support.test.espresso.Espresso
+import androidx.test.espresso.Espresso
 import rx.plugins.RxJavaPlugins
 
 /**

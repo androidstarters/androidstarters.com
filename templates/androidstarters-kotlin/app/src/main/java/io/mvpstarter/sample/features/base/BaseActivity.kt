@@ -1,9 +1,9 @@
 package <%= appPackage %>.features.base
 
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v4.util.LongSparseArray
-import android.support.v7.app.AppCompatActivity
+import androidx.annotation.LayoutRes
+import androidx.collection.LongSparseArray
+import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
 import butterknife.ButterKnife
 import <%= appPackage %>.MvpStarterApplication
@@ -50,7 +50,7 @@ abstract class BaseActivity : AppCompatActivity() {
             componentsArray.put(activityId, configPersistentComponent)
         } else {
             Timber.i("Reusing ConfigPersistentComponent id=%d", activityId)
-            configPersistentComponent = componentsArray.get(activityId)
+            configPersistentComponent = componentsArray.get(activityId)!!
         }
         activityComponent = configPersistentComponent.activityComponent(ActivityModule(this))
         activityComponent?.inject(this)

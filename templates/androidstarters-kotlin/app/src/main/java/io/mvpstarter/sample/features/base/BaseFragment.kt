@@ -2,9 +2,9 @@ package <%= appPackage %>.features.base
 
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v4.app.Fragment
-import android.support.v4.util.LongSparseArray
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
+import androidx.collection.LongSparseArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,7 +48,7 @@ abstract class BaseFragment : Fragment() {
             componentsArray.put(fragmentId, configPersistentComponent)
         } else {
             Timber.i("Reusing ConfigPersistentComponent id=%d", fragmentId)
-            configPersistentComponent = componentsArray.get(fragmentId)
+            configPersistentComponent = componentsArray.get(fragmentId)!!
         }
         fragmentComponent = configPersistentComponent.fragmentComponent(FragmentModule(this))
     }

@@ -18,53 +18,7 @@ let configs = [{
     branchName: 'develop',
     url: 'https://github.com/androidstarters/android-starter.git'
   }
-}, {
-  destination: 'mvp-arms',
-  rename: [{
-    dest: 'gitignore',
-    src: '.gitignore'
-  }, {
-    dest: 'app/gitignore',
-    src: 'app/.gitignore'
-  }],
-  replace: [{
-    regex: 'me.jessyan.mvparms.demo',
-    replacement: '<%= appPackage %>'
-  },{
-    regex: 'com.jess.arms',
-    replacement: '<%= appPackage %>'
-  }],
-  repo: {
-    branchName: 'master',
-    url: 'https://github.com/JessYanCoding/MVPArms.git'
-  }
-}, {
-  destination: 'mvvm-arms',
-  rename: [{
-    dest: 'gitignore',
-    src: '.gitignore'
-  }, {
-    dest: 'arms/gitignore',
-    src: 'arms/.gitignore'
-  }, {
-    dest: 'lifecycle/gitignore',
-    src: 'lifecycle/.gitignore'
-  }, {
-    dest: 'repository/gitignore',
-    src: 'repository/.gitignore'
-  }, {
-    dest: 'weather/gitignore',
-    src: 'weather/.gitignore'
-  }],
-  replace: [{
-    regex: 'me.xiaobailong24.mvvmarms',
-    replacement: '<%= appPackage %>'
-  }],
-  repo: {
-    branchName: 'master',
-    url: 'https://github.com/xiaobailong24/MVVMArms.git'
-  }
-}, {
+},{
   destination: 'androidstarters-kotlin',
   rename: [{
     dest: 'gitignore',
