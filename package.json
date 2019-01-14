@@ -15,6 +15,9 @@
     "postinstall": "npm rebuild node-sass",
     "eslint": "eslint **/*.js",
     "heroku-postbuild": "webpack -p"
+	},
+	"engines": {
+    "node": "8.x"
   },
   "dependencies": {
     "androidstarters": "^0.1.0",
